@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balamitra (బాలమిత్ర) - AI-Powered Anganwadi Platform</title>
+  <meta name="description" content="Offline-first early childhood development, WHO growth assessment, and empathetic voice intelligence for Anganwadi workers.">
+  <link rel="icon" type="image/png" href="/balamitra_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0A0D14;
+      --card-bg: #121824;
+      --card-border: #1E293B;
+      --primary-gold: #F5B041;
+      --primary-hover: #E59866;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --accent-green: #2ECC71;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand img {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+    }
+    .brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .brand-tag {
+      font-size: 11px;
+      background: rgba(245, 176, 65, 0.15);
+      color: var(--primary-gold);
+      padding: 3px 8px;
+      border-radius: 99px;
+      font-weight: 600;
+      margin-left: 6px;
+    }
+    .hero {
+      padding: 64px 0 40px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(46, 204, 113, 0.12);
+      color: var(--accent-green);
+      border: 1px solid rgba(46, 204, 113, 0.25);
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, #F5B041 0%, #F39C12 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 36px;
+    }
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #F5B041 0%, #F39C12 100%);
+      color: #0A0D14;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px 32px;
+      border-radius: 14px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(245, 176, 65, 0.35);
+      transition: all 0.2s ease;
+    }
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(245, 176, 65, 0.45);
+    }
+    .btn-github {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 15px 26px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn-github:hover {
+      background: #1B2434;
+      border-color: #334155;
+    }
+    .qr-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 18px 24px;
+      border-radius: 18px;
+      text-align: left;
+      margin: 0 auto;
+    }
+    .qr-card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 10px;
+      background: white;
+      padding: 4px;
+    }
+    .qr-text strong {
+      display: block;
+      font-size: 15px;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .qr-text span {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 50px 0;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 24px;
+      border-radius: 16px;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--primary-gold);
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .features {
+      padding: 40px 0 80px;
+    }
+    .features h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 36px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 28px;
+      border-radius: 18px;
+    }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(245, 176, 65, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    footer {
+      margin-top: auto;
+      padding: 30px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container header-content">
+      <a href="#" class="brand">
+        <img src="/balamitra_logo.png" alt="Balamitra Logo">
+        <div>
+          <span class="brand-title">Balamitra</span>
+          <span class="brand-tag">v1.0.0</span>
+        </div>
+      </a>
+      <a href="https://github.com/nithyahasinialle-rgb/Balamitra" target="_blank" class="btn-github" style="padding: 8px 18px; font-size: 13px;">
+        GitHub Repo ↗
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-badge">
+        <span>●</span> Offline-First Grassroots Health AI
+      </div>
+      <h1>Empowering Anganwadi Workers with <span>Empathy & Voice</span></h1>
+      <p>
+        Purpose-built for 1.4 million Anganwadi caregivers across India. Features hands-free multilingual voice admission, instant WHO growth Z-scores, and culturally respectful parent counseling.
+      </p>
+
+      <div class="cta-group">
+        <a href="${apkUrl}" download class="btn-download">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 16L7 11L8.4 9.55L11 12.15V4H13V12.15L15.6 9.55L17 11L12 16ZM6 20C5.45 20 4.979 19.804 4.587 19.412C4.195 19.02 3.999 18.549 4 18V15H6V18H18V15H20V18C20 18.55 19.804 19.021 19.412 19.413C19.02 19.805 18.549 20.001 18 20H6Z"/>
+          </svg>
+          Download APK (v1.0.0)
+          <span style="font-size: 12px; opacity: 0.8; font-weight: 500;">(17.9 MB)</span>
+        </a>
+        <a href="https://github.com/nithyahasinialle-rgb/Balamitra" target="_blank" class="btn-github">
+          View Source Code
+        </a>
+      </div>
+
+      <div class="qr-card">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://github.com/nithyahasinialle-rgb/Balamitra/raw/main/Balamitra.apk" alt="Download QR Code">
+        <div class="qr-text">
+          <strong>Scan to Install on Android</strong>
+          <span>Point your phone camera to download instantly to your device.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">35.5%</div>
+        <div class="stat-label">Child Stunting Rate in India (NFHS-5)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1.4M+</div>
+        <div class="stat-label">Anganwadi Centers in ICDS Network</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">15s</div>
+        <div class="stat-label">Voice Intake (vs 5 Min Paper Ledger)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">&lt; 5 KB</div>
+        <div class="stat-label">Frugal 2G/EDGE Sync Packet Size</div>
+      </div>
+    </section>
+
+    <section class="features">
+      <h2>Core System Capabilities</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎙️</div>
+          <h3>Multilingual Voice Intake</h3>
+          <p>Caregivers speak naturally in Telugu, Hindi, or English. Our on-device NLU tokenizes child names, age, anthropometrics, parents' names, and ward without touching a keyboard.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>WHO Growth Radar</h3>
+          <p>Instant Z-score calculation for Stunting (HAZ), Underweight (WAZ), and Wasting (WHZ) with clear visual color bands, replacing manual printed charts.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌸</div>
+          <h3>Empathetic Parent Counseling</h3>
+          <p>Translates intimidating clinical percentiles into warm, encouraging dialogues in regional languages, recommending affordable kitchen foods (groundnut, jaggery, drumstick leaves).</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Connect the Dots Synthesis</h3>
+          <p>Fuses longitudinal multi-point records across 30 to 90 days to discover the root cause behind weight stalls before acute malnutrition (SAM) sets in.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>100% Offline SQLite</h3>
+          <p>Complete Room database operating with zero latency in remote rural hamlets where 3G/4G connectivity is unavailable.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Zero-Trust Local Privacy</h3>
+          <p>Sensitive biometric health records remain stored securely on the local device, never exposed to open public cloud registries.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Balamitra Platform. Developed with empathy for grassroots community healthcare in India.</p>
+    </div>
+  </footer>
+
+  <!-- Firebase Web SDK Integration -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyDKgGZBVa2NgLU23524jdyKiG5OA43Fl9k",
+      authDomain: "balamitra-ketos.firebaseapp.com",
+      projectId: "balamitra-ketos",
+      storageBucket: "balamitra-ketos.firebasestorage.app",
+      messagingSenderId: "217500732134",
+      appId: "1:217500732134:web:160709b46fd30eae1bc927"
+    };
+    const app = initializeApp(firebaseConfig);
+  </script>
+</body>
+</html>
