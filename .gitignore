@@ -12,3 +12,5 @@ Captures/
 node_modules/
 .firebase/
 package-lock.json
+
+~$*
