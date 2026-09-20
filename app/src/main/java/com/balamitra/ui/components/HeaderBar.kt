@@ -44,6 +44,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import com.balamitra.app.R
 import com.balamitra.core.localization.LocalAppStrings
 import com.balamitra.core.model.Language
 import com.balamitra.ui.state.BalamitraUiState
@@ -78,24 +81,37 @@ fun HeaderBar(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = s.appName,
-                        fontFamily = FontFamily.Serif,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 22.sp,
-                        color = DeepBlack,
-                        letterSpacing = 0.5.sp
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.balamitra_logo),
+                        contentDescription = "Balamitra Logo",
+                        modifier = Modifier
+                            .size(42.dp)
+                            .clip(RoundedCornerShape(10.dp))
                     )
-                    Spacer(modifier = Modifier.height(2.dp))
-                    Text(
-                        text = s.tagline,
-                        fontFamily = FontFamily.SansSerif,
-                        fontWeight = FontWeight.Medium,
-                        color = Color(0xFF2C3E50),
-                        fontSize = 11.5.sp,
-                        lineHeight = 15.sp
-                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Column {
+                        Text(
+                            text = s.appName,
+                            fontFamily = FontFamily.Serif,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 22.sp,
+                            color = DeepBlack,
+                            letterSpacing = 0.5.sp
+                        )
+                        Spacer(modifier = Modifier.height(2.dp))
+                        Text(
+                            text = s.tagline,
+                            fontFamily = FontFamily.SansSerif,
+                            fontWeight = FontWeight.Medium,
+                            color = Color(0xFF2C3E50),
+                            fontSize = 11.5.sp,
+                            lineHeight = 15.sp
+                        )
+                    }
                 }
 
                 Spacer(modifier = Modifier.width(8.dp))

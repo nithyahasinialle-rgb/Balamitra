@@ -47,6 +47,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import com.balamitra.app.R
 import com.balamitra.core.localization.LocalAppStrings
 import com.balamitra.data.model.DefaultWorkerSession
 import com.balamitra.ui.state.BalamitraViewModel
@@ -74,21 +77,14 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // Emblem & Logo
-            Box(
+            // Official Balamitra Logo
+            Image(
+                painter = painterResource(id = R.drawable.balamitra_logo),
+                contentDescription = "Balamitra Logo",
                 modifier = Modifier
-                    .size(68.dp)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.primary),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = Icons.Default.HomeWork,
-                    contentDescription = "Anganwadi",
-                    tint = MaterialTheme.colorScheme.onPrimary,
-                    modifier = Modifier.size(36.dp)
-                )
-            }
+                    .size(100.dp)
+                    .clip(RoundedCornerShape(20.dp))
+            )
 
             Spacer(modifier = Modifier.height(14.dp))
 
