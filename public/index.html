@@ -75,19 +75,6 @@
       padding: 64px 0 40px;
       text-align: center;
     }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(46, 204, 113, 0.12);
-      color: var(--accent-green);
-      border: 1px solid rgba(46, 204, 113, 0.25);
-      padding: 6px 14px;
-      border-radius: 99px;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
     .hero h1 {
       font-size: clamp(32px, 5vw, 54px);
       font-weight: 800;
@@ -271,9 +258,6 @@
 
   <main class="container">
     <section class="hero">
-      <div class="hero-badge">
-        <span>●</span> Offline-First Grassroots Health AI
-      </div>
       <h1>Empowering Anganwadi Workers with <span>Empathy & Voice</span></h1>
       <p>
         Purpose-built for 1.4 million Anganwadi caregivers across India. Features hands-free multilingual voice admission, instant WHO growth Z-scores, and culturally respectful parent counseling.
@@ -324,32 +308,67 @@
       <h2>Core System Capabilities</h2>
       <div class="feature-grid">
         <div class="feature-card">
-          <div class="feature-icon">🎙️</div>
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5B041" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+          </div>
           <h3>Multilingual Voice Intake</h3>
           <p>Caregivers speak naturally in Telugu, Hindi, or English. Our on-device NLU tokenizes child names, age, anthropometrics, parents' names, and ward without touching a keyboard.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">📊</div>
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5B041" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+          </div>
           <h3>WHO Growth Radar</h3>
           <p>Instant Z-score calculation for Stunting (HAZ), Underweight (WAZ), and Wasting (WHZ) with clear visual color bands, replacing manual printed charts.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🌸</div>
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5B041" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </div>
           <h3>Empathetic Parent Counseling</h3>
           <p>Translates intimidating clinical percentiles into warm, encouraging dialogues in regional languages, recommending affordable kitchen foods (groundnut, jaggery, drumstick leaves).</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🔍</div>
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5B041" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+          </div>
           <h3>Connect the Dots Synthesis</h3>
           <p>Fuses longitudinal multi-point records across 30 to 90 days to discover the root cause behind weight stalls before acute malnutrition (SAM) sets in.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">⚡</div>
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5B041" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            </svg>
+          </div>
           <h3>100% Offline SQLite</h3>
           <p>Complete Room database operating with zero latency in remote rural hamlets where 3G/4G connectivity is unavailable.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🔒</div>
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5B041" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
           <h3>Zero-Trust Local Privacy</h3>
           <p>Sensitive biometric health records remain stored securely on the local device, never exposed to open public cloud registries.</p>
         </div>
