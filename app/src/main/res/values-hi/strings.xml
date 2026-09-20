@@ -1,0 +1,116 @@
+<resources>
+    <string name="app_name">बालमित्र</string>
+    <string name="tagline">हर बच्चे को समझें। आगे क्या करना है जानें।</string>
+    <string name="product_statement">बालमित्र एक ऑन-डिवाइस समझ प्रणाली है जो कार्यकर्ताओं के दैनिक अवलोकनों को याद रखती है, समय के साथ पैटर्न जोड़ती है और बेहतर निर्णय लेने में मदद करती है।</string>
+
+    <!-- Navigation Tabs -->
+    <string name="nav_today">आज का कार्य</string>
+    <string name="nav_children">बच्चे</string>
+    <string name="nav_observe">अवलोकन</string>
+    <string name="nav_insights">केंद्र अंतर्दृष्टि</string>
+
+    <!-- Mode & Status -->
+    <string name="status_online">ऑनलाइन</string>
+    <string name="status_offline">ऑफ़लाइन मोड (100% स्थानीय)</string>
+    <string name="mode_demo">डेमो मोड</string>
+    <string name="mode_real">वास्तविक केंद्र</string>
+    <string name="toggle_offline">ऑफ़लाइन जांचें</string>
+    <string name="toggle_demo">वास्तविक मोड पर जाएं</string>
+
+    <!-- Today Screen -->
+    <string name="today_title">आज मुझे क्या करना चाहिए?</string>
+    <string name="today_subtitle">पिछले अवलोकनों और उपलब्ध सामग्री के आधार पर प्राथमिकताएं</string>
+    <string name="today_empty">आज के सभी कार्य पूरे हुए! बहुत बढ़िया।</string>
+
+    <!-- Child Story -->
+    <string name="child_story_title">बच्चे की विकास यात्रा</string>
+    <string name="child_growth">शारीरिक वृद्धि</string>
+    <string name="child_nutrition">पोषण</string>
+    <string name="child_development">समग्र विकास</string>
+    <string name="status_stable">स्थिर</string>
+    <string name="status_increasing">बढ़ रहा है</string>
+    <string name="status_decreasing">घट रहा है</string>
+    <string name="status_needs_review">समीक्षा आवश्यक</string>
+    <string name="recent_observations">हाल के अवलोकन</string>
+    <string name="timeline">समयरेखा</string>
+
+    <!-- Hero Actions -->
+    <string name="btn_what_changed">क्या बदला?</string>
+    <string name="btn_connect_dots">कड़ियों को जोड़ें</string>
+    <string name="btn_why">यही क्यों?</string>
+    <string name="btn_explain_parent">अभिभावक को समझाएं</string>
+    <string name="btn_tell_balamitra">बालमित्र को बताएं</string>
+    <string name="btn_start_activity">गतिविधि शुरू करें</string>
+    <string name="btn_complete_activity">पूर्ण और पुन: अवलोकन</string>
+
+    <!-- What Changed Dialog -->
+    <string name="what_changed_title">पिछले अवलोकन के बाद से</string>
+    <string name="what_changed_growth">वृद्धि की स्थिति</string>
+    <string name="what_changed_development">विकास और भागीदारी</string>
+    <string name="what_changed_next_step">सुझाया गया अगला कदम</string>
+
+    <!-- Connect The Dots -->
+    <string name="connect_dots_title">जुड़ा हुआ पैटर्न</string>
+    <string name="connect_dots_subtitle">विभिन्न अवलोकनों के बीच देखा गया संबंध</string>
+    <string name="connect_dots_evidence">इतिहास से सहायक अवलोकन</string>
+    <string name="connect_dots_notice">देखा गया पैटर्न</string>
+    <string name="connect_dots_action">सुझाया गया विचार</string>
+
+    <!-- Why Evidence -->
+    <string name="why_title">इस सुझाव के पीछे का प्रमाण</string>
+    <string name="why_subtitle">दर्ज इतिहास पर आधारित पारदर्शी कारण</string>
+
+    <!-- Worker Override -->
+    <string name="worker_decision_title">कार्यकर्ता का निर्णय</string>
+    <string name="btn_use_this">इसे अपनाएं</string>
+    <string name="btn_change">बदलें</string>
+    <string name="btn_skip">छोड़ें</string>
+    <string name="override_reason_title">आपने इसे क्यों बदला?</string>
+    <string name="override_not_suitable">आज के लिए उपयुक्त नहीं</string>
+    <string name="override_child_tired">बच्चा थका हुआ है</string>
+    <string name="override_already_did">बच्चा यह पहले कर चुका है</string>
+    <string name="override_different_preferred">दूसरी गतिविधि पसंद है</string>
+    <string name="override_other">अन्य कारण</string>
+
+    <!-- Voice Observation Sheet -->
+    <string name="observe_title">दैनिक अवलोकन दर्ज करें</string>
+    <string name="observe_hint">हिंदी, तेलुगु या अंग्रेजी में स्वाभाविक रूप से बोलें…</string>
+    <string name="observe_listening">सुन रहा हूँ… अब बोलिए</string>
+    <string name="observe_understood">मैंने समझा:</string>
+    <string name="btn_save">सहेजें</string>
+    <string name="btn_correct">सुधारें</string>
+    <string name="sample_voice_prompt">या एक उदाहरण अवलोकन आज़माएं:</string>
+
+    <!-- Re-observation Loop -->
+    <string name="reobserve_title">गतिविधि कैसी रही?</string>
+    <string name="reobserve_subtitle">आपकी प्रतिक्रिया भविष्य के सुझावों को अनुकूलित करती है</string>
+    <string name="outcome_independent">स्वयं किया</string>
+    <string name="outcome_needed_help">मदद की ज़रूरत पड़ी</string>
+    <string name="outcome_could_not_do">नहीं कर सका</string>
+    <string name="reobserve_learned">बालमित्र ने सीखा: भविष्य की गतिविधियों के लिए यह परिणाम सहेज लिया गया।</string>
+
+    <!-- Parent Mode -->
+    <string name="parent_mode_title">अभिभावक संदेश</string>
+    <string name="parent_mode_subtitle">सरल और सकारात्मक भाषा में समझ</string>
+    <string name="parent_home_tip">घर पर आज़माने के लिए सरल खेल</string>
+    <string name="btn_read_aloud">सुनें (आवाज)</string>
+    <string name="btn_share">साझा करें</string>
+
+    <!-- Busy Mode -->
+    <string name="busy_mode_title">त्वरित मोड</string>
+    <string name="busy_mode_desc">व्यस्त समय के लिए 5 सेकंड की त्वरित प्रविष्टि</string>
+    <string name="btn_quick_log">त्वरित सहेजें</string>
+
+    <!-- Centre Insights -->
+    <string name="insights_title">केंद्र अंतर्दृष्टि</string>
+    <string name="insights_subtitle">इस सप्ताह का समग्र और सुरक्षित सारांश</string>
+    <string name="stat_children_observed">अवलोकन किए गए बच्चे</string>
+    <string name="stat_activities_done">पूर्ण गतिविधियाँ</string>
+    <string name="stat_followups_pending">लंबित अनुवर्ती कार्य</string>
+    <string name="stat_top_domains">सक्रिय विकास क्षेत्र</string>
+    <string name="materials_inventory_title">उपलब्ध सामग्री (केंद्र और घर)</string>
+    <string name="materials_inventory_desc">बालमित्र केवल उन्हीं सामग्रियों का उपयोग करता है जो आपके पास उपलब्ध हैं</string>
+
+    <!-- Safety Disclaimer -->
+    <string name="safety_disclaimer">बालमित्र केवल ध्यान देने योग्य पैटर्न दिखाता है। यह किसी भी चिकित्सीय निदान का विकल्प नहीं है।</string>
+</resources>

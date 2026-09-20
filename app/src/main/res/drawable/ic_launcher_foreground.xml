@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Child friend icon representation -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,28c5.52,0 10,-4.48 10,-10s-4.48,-10 -10,-10 -10,4.48 -10,10 4.48,10 10,10zM54,34c-6.67,0 -20,3.34 -20,10v6h40v-6c0,-6.66 -13.33,-10 -20,-10z" />
+    <path
+        android:fillColor="#F39C12"
+        android:pathData="M38,62c4.42,0 8,-3.58 8,-8s-3.58,-8 -8,-8 -8,3.58 -8,8 3.58,8 8,8zM38,68c-5.33,0 -16,2.67 -16,8v6h32v-6c0,-5.33 -10.67,-8 -16,-8z" />
+    <path
+        android:fillColor="#27AE60"
+        android:pathData="M70,62c4.42,0 8,-3.58 8,-8s-3.58,-8 -8,-8 -8,3.58 -8,8 3.58,8 8,8zM70,68c-5.33,0 -16,2.67 -16,8v6h32v-6c0,-5.33 -10.67,-8 -16,-8z" />
+</vector>

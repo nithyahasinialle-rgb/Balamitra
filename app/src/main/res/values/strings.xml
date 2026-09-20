@@ -1,0 +1,116 @@
+<resources>
+    <string name="app_name">BALAMITRA</string>
+    <string name="tagline">Understand every child. Know what to do next.</string>
+    <string name="product_statement">BALAMITRA is an on-device longitudinal intelligence layer that remembers what workers observe, connects patterns across time, and helps them make better-informed decisions.</string>
+
+    <!-- Navigation Tabs -->
+    <string name="nav_today">Today</string>
+    <string name="nav_children">Children</string>
+    <string name="nav_observe">Observe</string>
+    <string name="nav_insights">Centre Insights</string>
+
+    <!-- Mode & Status -->
+    <string name="status_online">Online</string>
+    <string name="status_offline">Offline Mode (100% Local)</string>
+    <string name="mode_demo">Demo Mode</string>
+    <string name="mode_real">Real Mode</string>
+    <string name="toggle_offline">Toggle Offline Proof</string>
+    <string name="toggle_demo">Switch to Real Center</string>
+
+    <!-- Today Screen -->
+    <string name="today_title">What Should I Do Today?</string>
+    <string name="today_subtitle">Prioritized actions based on past observations and center materials</string>
+    <string name="today_empty">All daily follow-ups completed! Great job.</string>
+
+    <!-- Child Story -->
+    <string name="child_story_title">Child Journey</string>
+    <string name="child_growth">Growth</string>
+    <string name="child_nutrition">Nutrition</string>
+    <string name="child_development">Development</string>
+    <string name="status_stable">Stable</string>
+    <string name="status_increasing">Increasing</string>
+    <string name="status_decreasing">Decreasing</string>
+    <string name="status_needs_review">Needs review</string>
+    <string name="recent_observations">Recent Observations</string>
+    <string name="timeline">Timeline</string>
+
+    <!-- Hero Actions -->
+    <string name="btn_what_changed">WHAT CHANGED?</string>
+    <string name="btn_connect_dots">CONNECT THE DOTS</string>
+    <string name="btn_why">WHY THIS?</string>
+    <string name="btn_explain_parent">EXPLAIN TO PARENT</string>
+    <string name="btn_tell_balamitra">Tell BALAMITRA</string>
+    <string name="btn_start_activity">Start Activity</string>
+    <string name="btn_complete_activity">Finish &amp; Re-Observe</string>
+
+    <!-- What Changed Dialog -->
+    <string name="what_changed_title">Since Last Observation</string>
+    <string name="what_changed_growth">Growth Trajectory</string>
+    <string name="what_changed_development">Development &amp; Participation</string>
+    <string name="what_changed_next_step">Suggested Next Step</string>
+
+    <!-- Connect The Dots -->
+    <string name="connect_dots_title">Connected Pattern</string>
+    <string name="connect_dots_subtitle">Longitudinal relationships identified across time</string>
+    <string name="connect_dots_evidence">Supporting Observations Across Timeline</string>
+    <string name="connect_dots_notice">Pattern Noticed</string>
+    <string name="connect_dots_action">Suggested Consideration</string>
+
+    <!-- Why Evidence -->
+    <string name="why_title">Evidence Behind This Suggestion</string>
+    <string name="why_subtitle">Transparent reasoning based on actual recorded history</string>
+
+    <!-- Worker Override -->
+    <string name="worker_decision_title">Worker Decision</string>
+    <string name="btn_use_this">USE THIS</string>
+    <string name="btn_change">CHANGE</string>
+    <string name="btn_skip">SKIP</string>
+    <string name="override_reason_title">Why did you change this?</string>
+    <string name="override_not_suitable">Not suitable today</string>
+    <string name="override_child_tired">Child is tired</string>
+    <string name="override_already_did">Child already did this</string>
+    <string name="override_different_preferred">Different activity preferred</string>
+    <string name="override_other">Other reason</string>
+
+    <!-- Voice Observation Sheet -->
+    <string name="observe_title">Record Daily Observation</string>
+    <string name="observe_hint">Speak naturally in English, Hindi, or Telugu…</string>
+    <string name="observe_listening">Listening… Speak now</string>
+    <string name="observe_understood">I Understood:</string>
+    <string name="btn_save">SAVE</string>
+    <string name="btn_correct">CORRECT</string>
+    <string name="sample_voice_prompt">Or try a sample observation:</string>
+
+    <!-- Re-observation Loop -->
+    <string name="reobserve_title">How Did It Go?</string>
+    <string name="reobserve_subtitle">Your feedback shapes future suggestions for this child</string>
+    <string name="outcome_independent">Did Independently</string>
+    <string name="outcome_needed_help">Needed Help</string>
+    <string name="outcome_could_not_do">Could Not Do</string>
+    <string name="reobserve_learned">BALAMITRA learned: Recorded this outcome to adapt future activities.</string>
+
+    <!-- Parent Mode -->
+    <string name="parent_mode_title">Parent Communication Note</string>
+    <string name="parent_mode_subtitle">Warm, supportive explanation without medical jargon</string>
+    <string name="parent_home_tip">Simple Activity to Try at Home</string>
+    <string name="btn_read_aloud">Read Aloud</string>
+    <string name="btn_share">Share Note</string>
+
+    <!-- Busy Mode -->
+    <string name="busy_mode_title">Busy Mode</string>
+    <string name="busy_mode_desc">Fast 5-second entry for peak Anganwadi hours</string>
+    <string name="btn_quick_log">Quick Save</string>
+
+    <!-- Centre Insights -->
+    <string name="insights_title">Centre Insights</string>
+    <string name="insights_subtitle">Aggregated, privacy-conscious summary for this week</string>
+    <string name="stat_children_observed">Children Observed</string>
+    <string name="stat_activities_done">Activities Completed</string>
+    <string name="stat_followups_pending">Follow-ups Pending</string>
+    <string name="stat_top_domains">Active Development Focus</string>
+    <string name="materials_inventory_title">Available Materials (Centre &amp; Home)</string>
+    <string name="materials_inventory_desc">BALAMITRA only recommends activities using items you have checked</string>
+
+    <!-- Safety Disclaimer -->
+    <string name="safety_disclaimer">BALAMITRA surfaces patterns worth observing and supports appropriate follow-up. It never replaces clinical diagnosis or health protocols.</string>
+</resources>

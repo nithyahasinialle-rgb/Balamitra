@@ -1,0 +1,116 @@
+<resources>
+    <string name="app_name">బాలమిత్ర</string>
+    <string name="tagline">ప్రతి బిడ్డను అర్థం చేసుకోండి. తర్వాత ఏమి చేయాలో తెలుసుకోండి.</string>
+    <string name="product_statement">బాలమిత్ర అనేది ఆన్-డివైస్ వ్యవస్థ, ఇది అంగన్‌వాడీ కార్యకర్తల పరిశీలనలను గుర్తుంచుకుంటుంది, కాలక్రమేణా మార్పులను గుర్తిస్తుంది మరియు సరైన నిర్ణయాలు తీసుకోవడంలో సహాయపడుతుంది.</string>
+
+    <!-- Navigation Tabs -->
+    <string name="nav_today">ఈరోజు</string>
+    <string name="nav_children">పిల్లలు</string>
+    <string name="nav_observe">పరిశీలన</string>
+    <string name="nav_insights">కేంద్రం వివరాలు</string>
+
+    <!-- Mode & Status -->
+    <string name="status_online">ఆన్‌లైన్</string>
+    <string name="status_offline">ఆఫ్‌లైన్ మోడ్ (100% పరికరంలోనే)</string>
+    <string name="mode_demo">డెమో మోడ్</string>
+    <string name="mode_real">రియల్ సెంటర్</string>
+    <string name="toggle_offline">ఆఫ్‌లైన్ పరీక్షించండి</string>
+    <string name="toggle_demo">రియల్ మోడ్‌కి మారండి</string>
+
+    <!-- Today Screen -->
+    <string name="today_title">ఈరోజు నేను ఏమి చేయాలి?</string>
+    <string name="today_subtitle">గత పరిశీలనలు మరియు అందుబాటులో ఉన్న వస్తువుల ఆధారంగా పనులు</string>
+    <string name="today_empty">ఈరోజు పనులన్నీ పూర్తయ్యాయి! అభినందనలు.</string>
+
+    <!-- Child Story -->
+    <string name="child_story_title">పిల్లల ప్రగతి ప్రయాణం</string>
+    <string name="child_growth">శారీరక పెరుగుదల</string>
+    <string name="child_nutrition">పోషణ</string>
+    <string name="child_development">సమగ్ర వికాసం</string>
+    <string name="status_stable">స్థిరంగా ఉంది</string>
+    <string name="status_increasing">పెరుగుతోంది</string>
+    <string name="status_decreasing">తగ్గుతోంది</string>
+    <string name="status_needs_review">గమనించాల్సిన అవసరం ఉంది</string>
+    <string name="recent_observations">ఇటీవలి పరిశీలనలు</string>
+    <string name="timeline">సమయరేఖ</string>
+
+    <!-- Hero Actions -->
+    <string name="btn_what_changed">ఏమి మారింది?</string>
+    <string name="btn_connect_dots">వివరాలను అనుసంధానించండి</string>
+    <string name="btn_why">ఇదే ఎందుకు?</string>
+    <string name="btn_explain_parent">తల్లిదండ్రులకు వివరించండి</string>
+    <string name="btn_tell_balamitra">బాలమిత్రకు చెప్పండి</string>
+    <string name="btn_start_activity">కార్యకలాపం ప్రారంభించండి</string>
+    <string name="btn_complete_activity">పూర్తి చేసి మళ్లీ పరిశీలించండి</string>
+
+    <!-- What Changed Dialog -->
+    <string name="what_changed_title">గత పరిశీలన నుండి మార్పులు</string>
+    <string name="what_changed_growth">పెరుగుదల సరళి</string>
+    <string name="what_changed_development">వికాసం మరియు భాగస్వామ్యం</string>
+    <string name="what_changed_next_step">సూచించిన తదుపరి చర్య</string>
+
+    <!-- Connect The Dots -->
+    <string name="connect_dots_title">అనుసంధానమైన సరళి</string>
+    <string name="connect_dots_subtitle">పరిశీలనలు మరియు ప్రతిస్పందనల మధ్య గుర్తింపు</string>
+    <string name="connect_dots_evidence">చరిత్ర నుండి ఆధారాలు</string>
+    <string name="connect_dots_notice">గమనించిన విషయం</string>
+    <string name="connect_dots_action">సూచించిన ఆలోచన</string>
+
+    <!-- Why Evidence -->
+    <string name="why_title">ఈ సూచన వెనుక ఉన్న ఆధారం</string>
+    <string name="why_subtitle">నమోదైన చరిత్ర ఆధారంగా పారదర్శక వివరణ</string>
+
+    <!-- Worker Override -->
+    <string name="worker_decision_title">కార్యకర్త నిర్ణయం</string>
+    <string name="btn_use_this">దీన్ని ఉపయోగించండి</string>
+    <string name="btn_change">మార్చండి</string>
+    <string name="btn_skip">వదిలివేయండి</string>
+    <string name="override_reason_title">మీరు దీన్ని ఎందుకు మార్చారు?</string>
+    <string name="override_not_suitable">ఈరోజు సరిపోదు</string>
+    <string name="override_child_tired">పిల్లాడు అలసిపోయాడు</string>
+    <string name="override_already_did">ఇది ఇప్పటికే చేశాడు</string>
+    <string name="override_different_preferred">వేరే కార్యాచరణ కావాలి</string>
+    <string name="override_other">ఇతర కారణం</string>
+
+    <!-- Voice Observation Sheet -->
+    <string name="observe_title">దైనందిన పరిశీలనను నమోదు చేయండి</string>
+    <string name="observe_hint">తెలుగు, హిందీ లేదా ఇంగ్లీషులో సహజంగా మాట్లాడండి…</string>
+    <string name="observe_listening">వింటోంది… ఇప్పుడు మాట్లాడండి</string>
+    <string name="observe_understood">నేను అర్థం చేసుకున్నది:</string>
+    <string name="btn_save">సేవ్ చేయండి</string>
+    <string name="btn_correct">సవరించండి</string>
+    <string name="sample_voice_prompt">లేదా నమూనా పరిశీలన ప్రయత్నించండి:</string>
+
+    <!-- Re-observation Loop -->
+    <string name="reobserve_title">కార్యకలాపం ఎలా జరిగింది?</string>
+    <string name="reobserve_subtitle">మీ అభిప్రాయం భవిష్యత్తు సూచనలను తీర్చిదిద్దుతుంది</string>
+    <string name="outcome_independent">స్వయంగా చేయగలిగారు</string>
+    <string name="outcome_needed_help">సహాయం అవసరమైంది</string>
+    <string name="outcome_could_not_do">చేయలేకపోయారు</string>
+    <string name="reobserve_learned">బాలమిత్ర నేర్చుకుంది: తదుపరి కార్యాచరణలను మెరుగుపరచడానికి ఇది ఉపయోగపడుతుంది.</string>
+
+    <!-- Parent Mode -->
+    <string name="parent_mode_title">తల్లిదండ్రుల వివరణ</string>
+    <string name="parent_mode_subtitle">సులభమైన, సానుకూల భాషలో అర్థమయ్యేలా</string>
+    <string name="parent_home_tip">ఇంట్లో ఆడుకోగల సరళమైన ఆట</string>
+    <string name="btn_read_aloud">వినండి (వాయిస్)</string>
+    <string name="btn_share">పంచుకోండి</string>
+
+    <!-- Busy Mode -->
+    <string name="busy_mode_title">శీఘ్ర మోడ్</string>
+    <string name="busy_mode_desc">రద్దీ సమయాల్లో 5 సెకన్లలో శీఘ్ర నమోదు</string>
+    <string name="btn_quick_log">వెంటనే సేవ్ చేయండి</string>
+
+    <!-- Centre Insights -->
+    <string name="insights_title">కేంద్రం సమాచారం</string>
+    <string name="insights_subtitle">ఈ వారం సారాంశం (సురక్షితమైన సమాచారం)</string>
+    <string name="stat_children_observed">పరిశీలించిన పిల్లలు</string>
+    <string name="stat_activities_done">పూర్తయిన కార్యాచరణలు</string>
+    <string name="stat_followups_pending">బాకీ ఉన్న పనులు</string>
+    <string name="stat_top_domains">ప్రధాన అభివృద్ధి విభాగాలు</string>
+    <string name="materials_inventory_title">అందుబాటులో ఉన్న వస్తువులు</string>
+    <string name="materials_inventory_desc">మీరు ఎంచుకున్న వస్తువుల ఆధారంగానే కార్యాచరణలు ఉంటాయి</string>
+
+    <!-- Safety Disclaimer -->
+    <string name="safety_disclaimer">బాలమిత్ర కేవలం పరిశీలించదగిన మార్పులను గుర్తిస్తుంది. ఇది ఎలాంటి వైద్య నిర్ధారణ కాదు.</string>
+</resources>

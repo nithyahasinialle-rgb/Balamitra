@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Warm Indian Anganwadi Palette -->
+    <color name="primary_terracotta">#C0392B</color>
+    <color name="primary_variant">#962D22</color>
+    <color name="secondary_saffron">#D35400</color>
+    <color name="turmeric">#F39C12</color>
+    <color name="leaf_green">#27AE60</color>
+    <color name="deep_blue">#2980B9</color>
+    <color name="sand_cream">#FDFEFE</color>
+    <color name="surface_warm">#F8F9F9</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="text_primary">#1C2833</color>
+    <color name="text_secondary">#566573</color>
+    <color name="border_subtle">#E5E7E9</color>
+    <color name="error_red">#E74C3C</color>
+    <color name="success_green">#229954</color>
+</resources>
