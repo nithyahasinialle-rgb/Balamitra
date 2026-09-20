@@ -9,3 +9,6 @@ app/build/
 *.hprof
 Captures/
 .externalNativeBuild
+node_modules/
+.firebase/
+package-lock.json
