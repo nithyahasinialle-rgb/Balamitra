@@ -20,6 +20,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.border
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.CalendarToday
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Mic
@@ -68,6 +69,73 @@ fun HomeScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
+        // 1-Tap Evaluator Tour Mode Hero Banner
+        item {
+            Card(
+                colors = CardDefaults.cardColors(containerColor = Color(0xFF1E293B)),
+                shape = RoundedCornerShape(14.dp),
+                elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { viewModel.setEvaluatorTourOpen(true) }
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(14.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(38.dp)
+                                .clip(RoundedCornerShape(10.dp))
+                                .background(com.balamitra.ui.theme.BrandYellowPrimary),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.AutoAwesome,
+                                contentDescription = null,
+                                tint = com.balamitra.ui.theme.DeepBlack,
+                                modifier = Modifier.size(20.dp)
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Column {
+                            Text(
+                                text = "Evaluator Tour Mode",
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White,
+                                fontSize = 14.sp
+                            )
+                            Text(
+                                text = "1-Tap Guided Walkthrough of All Capabilities",
+                                fontSize = 11.sp,
+                                color = Color(0xFF94A3B8)
+                            )
+                        }
+                    }
+
+                    Button(
+                        onClick = { viewModel.setEvaluatorTourOpen(true) },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = com.balamitra.ui.theme.BrandYellowPrimary,
+                            contentColor = com.balamitra.ui.theme.DeepBlack
+                        ),
+                        shape = RoundedCornerShape(8.dp),
+                        contentPadding = PaddingValues(horizontal = 10.dp, vertical = 6.dp)
+                    ) {
+                        Text("Start Tour", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
+        }
+
         // Live Real-Time Date & Time Banner
         item {
             var liveDateTime by remember {

@@ -26,6 +26,14 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
@@ -94,6 +102,7 @@ fun BalamitraApp(
 ) {
     val state by viewModel.uiState.collectAsState()
     val s = LocalAppStrings.current
+    val haptic = LocalHapticFeedback.current
 
     LaunchedEffect(state.toastMessage) {
         state.toastMessage?.let { msg ->
@@ -114,7 +123,10 @@ fun BalamitraApp(
                 // Tab 1: TODAY
                 NavigationBarItem(
                     selected = state.activeTab == AppTab.TODAY,
-                    onClick = { viewModel.setActiveTab(AppTab.TODAY) },
+                    onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    viewModel.setActiveTab(AppTab.TODAY)
+                },
                     icon = { Icon(Icons.Default.Home, contentDescription = s.navToday) },
                     label = {
                         Text(
@@ -133,7 +145,10 @@ fun BalamitraApp(
                 // Tab 2: CHILDREN
                 NavigationBarItem(
                     selected = state.activeTab == AppTab.CHILDREN,
-                    onClick = { viewModel.setActiveTab(AppTab.CHILDREN) },
+                    onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    viewModel.setActiveTab(AppTab.CHILDREN)
+                },
                     icon = { Icon(Icons.Default.ChildCare, contentDescription = s.navChildren) },
                     label = {
                         Text(
@@ -152,7 +167,10 @@ fun BalamitraApp(
                 // Tab 3: OBSERVE
                 NavigationBarItem(
                     selected = state.activeTab == AppTab.OBSERVE,
-                    onClick = { viewModel.setActiveTab(AppTab.OBSERVE) },
+                    onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    viewModel.setActiveTab(AppTab.OBSERVE)
+                },
                     icon = { Icon(Icons.Default.Mic, contentDescription = s.navObserve) },
                     label = {
                         Text(
@@ -171,7 +189,10 @@ fun BalamitraApp(
                 // Tab 4: INSIGHTS
                 NavigationBarItem(
                     selected = state.activeTab == AppTab.INSIGHTS,
-                    onClick = { viewModel.setActiveTab(AppTab.INSIGHTS) },
+                    onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    viewModel.setActiveTab(AppTab.INSIGHTS)
+                },
                     icon = { Icon(Icons.Default.Analytics, contentDescription = s.navInsights) },
                     label = {
                         Text(
@@ -194,11 +215,20 @@ fun BalamitraApp(
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            when (state.activeTab) {
-                AppTab.TODAY -> HomeScreen(state = state, viewModel = viewModel)
-                AppTab.CHILDREN -> ChildrenScreen(state = state, viewModel = viewModel)
-                AppTab.OBSERVE -> ObserveScreen(state = state, viewModel = viewModel)
-                AppTab.INSIGHTS -> InsightsScreen(state = state, viewModel = viewModel)
+            AnimatedContent(
+                targetState = state.activeTab,
+                transitionSpec = {
+                    fadeIn(animationSpec = tween(220, easing = FastOutSlowInEasing)) togetherWith
+                    fadeOut(animationSpec = tween(180, easing = FastOutSlowInEasing))
+                },
+                label = "120HzTabTransition"
+            ) { targetTab ->
+                when (targetTab) {
+                    AppTab.TODAY -> HomeScreen(state = state, viewModel = viewModel)
+                    AppTab.CHILDREN -> ChildrenScreen(state = state, viewModel = viewModel)
+                    AppTab.OBSERVE -> ObserveScreen(state = state, viewModel = viewModel)
+                    AppTab.INSIGHTS -> InsightsScreen(state = state, viewModel = viewModel)
+                }
             }
 
             // Hosted Dialogs
@@ -258,6 +288,22 @@ fun BalamitraApp(
                 )
             }
 
+
+            
+            if (state.isEvaluatorTourOpen) {
+                com.balamitra.ui.components.EvaluatorTourDialog(
+                    state = state,
+                    viewModel = viewModel,
+                    onDismiss = { viewModel.setEvaluatorTourOpen(false) }
+                )
+            }
+
+            if (state.isPoshanCsvDialogOpen) {
+                com.balamitra.ui.components.PoshanTrackerDialog(
+                    viewModel = viewModel,
+                    onDismiss = { viewModel.setPoshanCsvDialogOpen(false) }
+                )
+            }
 
             if (state.isAttendanceDialogOpen) {
                 com.balamitra.ui.components.AttendanceDialog(

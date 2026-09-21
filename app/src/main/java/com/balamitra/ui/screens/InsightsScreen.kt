@@ -24,11 +24,15 @@ import androidx.compose.material.icons.filled.Inventory2
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.foundation.border
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material.icons.filled.BarChart
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.ContentCopy
+import androidx.compose.material.icons.filled.VerifiedUser
 import androidx.compose.material.icons.filled.PieChart
 import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material.icons.filled.CheckCircle
@@ -42,6 +46,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,6 +62,7 @@ fun InsightsScreen(
     viewModel: BalamitraViewModel,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
     val s = LocalAppStrings.current
     val insights = state.centreInsights
     val worker = state.currentWorker
@@ -452,77 +458,98 @@ fun InsightsScreen(
             }
         }
 
-        // GRAPHICAL REPRESENTATION 3: On-Device AI & Hardware Performance Meter
+        // OFFICIAL POSHAN TRACKER GOVERNMENT EXPORT CARD
         item {
             Card(
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFF9FAFB)),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFF0FDF4)),
                 shape = RoundedCornerShape(16.dp),
-                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFE5E7EB)),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFF86EFAC)),
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(
-                            imageVector = Icons.Default.Speed,
-                            contentDescription = null,
-                            tint = DeepBlack,
-                            modifier = Modifier.size(20.dp)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(
-                            text = "iQOO On-Device Hardware Benchmark",
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold,
-                            color = DeepBlack
-                        )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                imageVector = Icons.Default.VerifiedUser,
+                                contentDescription = null,
+                                tint = Color(0xFF16A085),
+                                modifier = Modifier.size(22.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Column {
+                                Text(
+                                    text = "Official Poshan Tracker Export",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xFF0E6251)
+                                )
+                                Text(
+                                    text = "MoWCD / ICDS National Registry Mode",
+                                    fontSize = 11.sp,
+                                    color = Color(0xFF166534)
+                                )
+                            }
+                        }
+
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(6.dp))
+                                .background(Color(0xFFDCFCE7))
+                                .padding(horizontal = 8.dp, vertical = 4.dp)
+                        ) {
+                            Text(
+                                text = "15/15 Ready",
+                                fontSize = 10.5.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFF166534)
+                            )
+                        }
                     }
 
-                    Spacer(modifier = Modifier.height(12.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Text(
+                        text = "Calibrated WHO growth classifications, biometric Z-scores, and meal distribution logs formatted for seamless upload to the national Poshan Tracker portal.",
+                        fontSize = 11.5.sp,
+                        lineHeight = 16.sp,
+                        color = Color(0xFF1F2937)
+                    )
+
+                    Spacer(modifier = Modifier.height(14.dp))
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        Column(
-                            modifier = Modifier
-                                .weight(1f)
-                                .clip(RoundedCornerShape(10.dp))
-                                .background(Color.White)
-                                .border(0.5.dp, Color(0xFFE5E7EB), RoundedCornerShape(10.dp))
-                                .padding(10.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally
+                        Button(
+                            onClick = { viewModel.setPoshanCsvDialogOpen(true) },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFF16A085),
+                                contentColor = Color.White
+                            ),
+                            shape = RoundedCornerShape(8.dp),
+                            modifier = Modifier.weight(1f)
                         ) {
-                            Text("Latency", fontSize = 10.sp, color = Color(0xFF6B7280))
-                            Text("~120 ms", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color(0xFF0E6251))
-                            Text("Instant Edge", fontSize = 9.sp, color = Color(0xFF10B981))
+                            Icon(Icons.Default.Visibility, contentDescription = null, modifier = Modifier.size(14.dp))
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text("View Sample CSV", fontSize = 11.5.sp, fontWeight = FontWeight.Bold)
                         }
 
-                        Column(
-                            modifier = Modifier
-                                .weight(1f)
-                                .clip(RoundedCornerShape(10.dp))
-                                .background(Color.White)
-                                .border(0.5.dp, Color(0xFFE5E7EB), RoundedCornerShape(10.dp))
-                                .padding(10.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally
+                        OutlinedButton(
+                            onClick = {
+                                viewModel.copyPoshanCsvToClipboard(context, com.balamitra.data.model.PoshanTrackerRepository.generateCsvString())
+                            },
+                            shape = RoundedCornerShape(8.dp),
+                            colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFF0E6251)),
+                            modifier = Modifier.weight(1f)
                         ) {
-                            Text("Mobile Data", fontSize = 10.sp, color = Color(0xFF6B7280))
-                            Text("0.00 KB", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1E824C))
-                            Text("100% Offline", fontSize = 9.sp, color = Color(0xFF10B981))
-                        }
-
-                        Column(
-                            modifier = Modifier
-                                .weight(1f)
-                                .clip(RoundedCornerShape(10.dp))
-                                .background(Color.White)
-                                .border(0.5.dp, Color(0xFFE5E7EB), RoundedCornerShape(10.dp))
-                                .padding(10.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Text("Privacy", fontSize = 10.sp, color = Color(0xFF6B7280))
-                            Text("100%", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color(0xFF2563EB))
-                            Text("On-Device", fontSize = 9.sp, color = Color(0xFF3B82F6))
+                            Icon(Icons.Default.ContentCopy, contentDescription = null, modifier = Modifier.size(14.dp))
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text("Export CSV", fontSize = 11.5.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }

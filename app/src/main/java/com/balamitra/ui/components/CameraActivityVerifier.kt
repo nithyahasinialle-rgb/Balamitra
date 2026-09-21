@@ -902,7 +902,7 @@ fun CameraActivityVerifierDialog(
 
 /**
  * Real Android Camera2 Hardware Viewfinder.
- * Activates physical back camera hardware on physical devices (iQOO, Pixel, Samsung, etc.)
+ * Activates physical back camera hardware on physical devices (Android devices)
  * with graceful fallback in case of emulator or permission absence.
  */
 @Composable

@@ -863,10 +863,10 @@ fun ObserveScreen(
             Language.HINDI -> "गोपनीयता और ऑन-डिवाइस प्रदर्शन:"
             Language.ENGLISH -> "Center Privacy & Edge Performance:"
         }
-        val latencyText = when (lang) {
-            Language.TELUGU -> "• స్పందన సమయం: 0.12 సెకన్లు (~120ms తక్షణమే)"
-            Language.HINDI -> "• प्रतिक्रिया समय: 0.12 सेकंड (~120ms तुरंत)"
-            Language.ENGLISH -> "• Local Inference Latency: ~120 ms (Instantaneous)"
+        val speedText = when (lang) {
+            Language.TELUGU -> "• ప్రాసెసింగ్ వేగం: తక్షణమే ఆఫ్‌లైన్‌లో లెక్కింపు ✓"
+            Language.HINDI -> "• प्रोसेसिंग गति: तुरंत ऑफ़लाइन गणना ✓"
+            Language.ENGLISH -> "• Processing Speed: Instant on-device execution ✓"
         }
         val dataCostText = when (lang) {
             Language.TELUGU -> "• నెట్‌వర్క్ డేటా ఖర్చు: 0.00 KB (పూర్తిగా ఉచితం)"
@@ -952,7 +952,7 @@ $parsedLabel
                     Spacer(modifier = Modifier.height(10.dp))
 
                     Text(perfTitle, fontWeight = FontWeight.SemiBold, fontSize = 12.sp)
-                    Text(latencyText, fontSize = 11.sp)
+                    Text(speedText, fontSize = 11.sp)
                     Text(dataCostText, fontSize = 11.sp, fontWeight = FontWeight.Bold, color = Color(0xFF27AE60))
                     Text(privacyText, fontSize = 11.sp, color = Color(0xFF27AE60))
                 }

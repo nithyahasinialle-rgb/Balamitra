@@ -19,6 +19,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.CloudOff
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.FormatSize
@@ -261,7 +262,34 @@ fun HeaderBar(
                             )
                         }
 
-                        // Logout Button
+                        
+                        // Evaluator Tour Shortcut Button
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(DeepBlack.copy(alpha = 0.15f))
+                                .clickable { viewModel.setEvaluatorTourOpen(true) }
+                                .padding(horizontal = 8.dp, vertical = 4.dp)
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    imageVector = Icons.Default.AutoAwesome,
+                                    contentDescription = "Evaluator Tour",
+                                    tint = DeepBlack,
+                                    modifier = Modifier.size(13.dp)
+                                )
+                                Spacer(modifier = Modifier.width(3.dp))
+                                Text(
+                                    text = "Tour",
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = DeepBlack
+                                )
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.width(6.dp))
+// Logout Button
                         Box(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(8.dp))

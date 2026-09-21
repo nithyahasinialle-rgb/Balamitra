@@ -83,7 +83,10 @@ data class BalamitraUiState(
     val cloudSyncQueueCount: Int = 3,
     val isDataMonitorDialogOpen: Boolean = false,
     val isCloudSyncSimulating: Boolean = false,
-    val isAddChildDialogOpen: Boolean = false
+    val isAddChildDialogOpen: Boolean = false,
+    val isEvaluatorTourOpen: Boolean = false,
+    val evaluatorTourStep: Int = 1,
+    val isPoshanCsvDialogOpen: Boolean = false
 )
 
 class BalamitraViewModel(private val repository: ChildRepository) : ViewModel() {
@@ -514,6 +517,25 @@ class BalamitraViewModel(private val repository: ChildRepository) : ViewModel() 
     fun markAllPresent() {
         val allMap = _uiState.value.children.associate { it.id to true }
         _uiState.update { it.copy(attendanceMap = allMap) }
+    }
+
+    fun setEvaluatorTourOpen(open: Boolean) {
+        _uiState.update { it.copy(isEvaluatorTourOpen = open, evaluatorTourStep = 1) }
+    }
+
+    fun setEvaluatorTourStep(step: Int) {
+        _uiState.update { it.copy(evaluatorTourStep = step.coerceIn(1, 5)) }
+    }
+
+    fun setPoshanCsvDialogOpen(open: Boolean) {
+        _uiState.update { it.copy(isPoshanCsvDialogOpen = open) }
+    }
+
+    fun copyPoshanCsvToClipboard(context: android.content.Context, csvContent: String) {
+        val clipboard = context.getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+        val clip = android.content.ClipData.newPlainText("Poshan Tracker CSV", csvContent)
+        clipboard.setPrimaryClip(clip)
+        _uiState.update { it.copy(toastMessage = "✓ Poshan Tracker CSV (15 children records) copied to clipboard!") }
     }
 
     private fun refreshCentreInsights() {
