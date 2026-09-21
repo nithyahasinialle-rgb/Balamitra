@@ -39,7 +39,9 @@ enum class AppTab {
 }
 
 data class BalamitraUiState(
-    val isAuthenticated: Boolean = true, // Default to true or authenticated session
+    val isAuthenticated: Boolean = false, // Shows login screen initially for teacher authentication
+    val attendanceMap: Map<String, Boolean> = emptyMap(),
+    val isAttendanceDialogOpen: Boolean = false,
     val currentWorker: AnganwadiWorker = DefaultWorkerSession.defaultWorker,
     val centerStatus: CenterDailyStatus = DefaultWorkerSession.defaultDailyStatus,
     val currentLanguage: Language = Language.ENGLISH,
@@ -496,6 +498,22 @@ class BalamitraViewModel(private val repository: ChildRepository) : ViewModel() 
                 )
             }
         }
+    }
+
+    fun setAttendanceDialogOpen(open: Boolean) {
+        _uiState.update { it.copy(isAttendanceDialogOpen = open) }
+    }
+
+    fun toggleAttendance(childId: String) {
+        val currentMap = _uiState.value.attendanceMap.toMutableMap()
+        val currentVal = currentMap[childId] ?: true
+        currentMap[childId] = !currentVal
+        _uiState.update { it.copy(attendanceMap = currentMap) }
+    }
+
+    fun markAllPresent() {
+        val allMap = _uiState.value.children.associate { it.id to true }
+        _uiState.update { it.copy(attendanceMap = allMap) }
     }
 
     private fun refreshCentreInsights() {

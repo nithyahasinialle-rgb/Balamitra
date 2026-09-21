@@ -1,6 +1,7 @@
 package com.balamitra.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,6 +19,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Badge
 import androidx.compose.material.icons.filled.Bolt
 import androidx.compose.material.icons.filled.HomeWork
@@ -135,6 +137,52 @@ fun LoginScreen(
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.primary
                     )
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    // Prominent Sample Teacher Credentials Display Card (Bachupally AWC 1)
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(Color(0xFFFEF9E7))
+                            .border(1.dp, Color(0xFFF9E79F), RoundedCornerShape(10.dp))
+                            .padding(12.dp)
+                    ) {
+                        Column {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Icon(
+                                        imageVector = Icons.Default.AccountCircle,
+                                        contentDescription = null,
+                                        tint = Color(0xFFB7950B),
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                                    Spacer(modifier = Modifier.width(6.dp))
+                                    Text(
+                                        text = s.sampleCredentialsTitle,
+                                        fontSize = 11.5.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        color = Color(0xFF7D6608)
+                                    )
+                                }
+                            }
+
+                            Spacer(modifier = Modifier.height(6.dp))
+
+                            Text(
+                                text = "• ${s.workerIdLabel}: AWW-TG-HYD-108 (Smt. Lakshmi Devi)\n• ${s.centerCodeLabel}: AWC-TG-HYD-BCH-042 (Bachupally AWC 1)\n• ${s.pinLabel}: 1234",
+                                fontSize = 11.sp,
+                                color = Color(0xFF4A235A),
+                                fontWeight = FontWeight.Medium,
+                                lineHeight = 17.sp
+                            )
+                        }
+                    }
 
                     Spacer(modifier = Modifier.height(14.dp))
 

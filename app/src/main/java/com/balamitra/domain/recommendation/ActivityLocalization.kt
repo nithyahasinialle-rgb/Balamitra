@@ -1,4 +1,4 @@
-﻿package com.balamitra.domain.recommendation
+package com.balamitra.domain.recommendation
 
 import com.balamitra.core.model.Language
 
@@ -14,28 +14,100 @@ object ActivityLocalization {
 
     fun getLocalizedContent(activityId: String, language: Language, childName: String): LocalizedActivityContent {
         return when (activityId) {
+            "act_rattle_rhythm" -> when (language) {
+                Language.TELUGU -> LocalizedActivityContent(
+                    title = "కిలకిల శబ్దం & చప్పట్ల లయ (Rattle & Clap Rhythm)",
+                    requiredMaterials = listOf("కిలకిల బొమ్మ / గిలక", "చేతులు"),
+                    steps = listOf(
+                        "పిల్లల ఎడమ మరియు కుడి వైపు గిలకను నెమ్మదిగా ఊపండి",
+                        "పిల్లవాడు తల తిప్పి శబ్దాన్ని గమనిస్తున్నాడో చూడండి",
+                        "చేతులతో చప్పట్లు కొడుతూ పిల్లవాడిని కూడా చప్పట్లు కొట్టమని ప్రోత్సహించండి"
+                    ),
+                    whatToObserve = "పిల్లవాడు శబ్దం వైపు తల తిప్పుతున్నాడా మరియు రెండు చేతులతో చప్పట్లు కొట్టడానికి ప్రయత్నిస్తున్నాడా?",
+                    parentExplanation = "ఈరోజు శబ్దం వినడం, చప్పట్లు కొట్టడం ప్రాక్టీస్ చేశాము. ఇంట్లో కూడా పాట పాడుతూ చప్పట్లు కొట్టించండి."
+                )
+                Language.HINDI -> LocalizedActivityContent(
+                    title = "झुनझुना और ताली की लय (Rattle & Clap Rhythm)",
+                    requiredMaterials = listOf("झुनझुना", "हाथ"),
+                    steps = listOf(
+                        "बच्चे के बाएं और दाएं ओर झुनझुना धीरे से हिलाएं",
+                        "देखें कि क्या बच्चा आवाज़ की दिशा में सिर घुमाता है",
+                        "ताली बजाते हुए बच्चे को भी ताली बजाने के लिए प्रोत्साहित करें"
+                    ),
+                    whatToObserve = "क्या बच्चा आवाज़ की दिशा में सिर घुमाता है और दोनों हथेलियों से ताली बजाता है?",
+                    parentExplanation = "आज हमने ताली बजाने और आवाज़ सुनने का अभ्यास किया। घर पर भी ताली बजाकर गाने गाएं।"
+                )
+                Language.ENGLISH -> LocalizedActivityContent(
+                    title = "Rattle & Clap Rhythm",
+                    requiredMaterials = listOf("Rattle", "Hands"),
+                    steps = listOf(
+                        "Shake rattle gently to left and right",
+                        "Observe if child tracks with head and eyes",
+                        "Clap hands together and invite child to clap"
+                    ),
+                    whatToObserve = "Does the child turn head to track the sound and attempt to clap with both palms?",
+                    parentExplanation = "Today we practiced hearing and clapping to sounds. At home, clap your hands while singing to encourage hand coordination."
+                )
+            }
+
+            "act_roll_soft_ball" -> when (language) {
+                Language.TELUGU -> LocalizedActivityContent(
+                    title = "మెత్తటి బంతి దొర్లించే ఆట (Gentle Rolling Ball)",
+                    requiredMaterials = listOf("మెత్తటి గుడ్డ బంతి లేదా స్పాంజ్ బంతి"),
+                    steps = listOf(
+                        "చాపపై పిల్లవాడికి ఎదురుగా కూర్చోండి",
+                        "బంతిని పిల్లవాడి చేతుల వైపు నెమ్మదిగా దొర్లించండి",
+                        "పిల్లవాడిని బంతిని తిరిగి ముందుకు తోయమని చెప్పండి"
+                    ),
+                    whatToObserve = "పిల్లవాడు చేతులతో బంతిని ఆపి మళ్లీ ముందుకు నెట్టగలుగుతున్నాడా?",
+                    parentExplanation = "బంతిని దొర్లించడం వల్ల బ్యాలెన్స్ మరియు చేతుల బలం పెరుగుతుంది. ఇంట్లో కూడా మెత్తటి వస్తువులతో ఈ ఆట ఆడించండి."
+                )
+                Language.HINDI -> LocalizedActivityContent(
+                    title = "नरम गेंद लुढ़काने का खेल (Gentle Rolling Ball)",
+                    requiredMaterials = listOf("नरम कपड़े की गेंद"),
+                    steps = listOf(
+                        "चटाई पर बच्चे के सामने बैठें",
+                        "गेंद को धीरे से बच्चे के हाथों की ओर लुढ़काएं",
+                        "बच्चे को गेंद वापस धकेलने के लिए कहें"
+                    ),
+                    whatToObserve = "क्या बच्चा दोनों हाथों से गेंद रोककर आगे धकेल पाता है?",
+                    parentExplanation = "गेंद लुढ़काने से बच्चे का संतुलन और हाथों की ताकत बढ़ती है।"
+                )
+                Language.ENGLISH -> LocalizedActivityContent(
+                    title = "Gentle Rolling Ball",
+                    requiredMaterials = listOf("Soft cloth ball"),
+                    steps = listOf(
+                        "Sit on mat opposite to child",
+                        "Roll ball gently toward child's hands",
+                        "Encourage child to push or roll it back"
+                    ),
+                    whatToObserve = "Can the child stop the rolling ball with hands and push it back forward?",
+                    parentExplanation = "Rolling a ball develops balance and arm strength. Practice rolling soft toys at home."
+                )
+            }
+
             "act_color_cups" -> when (language) {
                 Language.TELUGU -> LocalizedActivityContent(
                     title = "రంగుల కప్పుల ఆట (Colour Cup Challenge)",
-                    requiredMaterials = listOf("ప్లాస్టిక్ / కాగితపు కప్పులు", "బాటిల్ మూతలు"),
+                    requiredMaterials = listOf("ప్లాస్టిక్ కప్పులు", "సీసా మూతలు"),
                     steps = listOf(
                         "చాపపై ఒక ఎరుపు కప్పు, ఒక నీలం కప్పు ఉంచండి",
-                        "బిడ్డతో నెమ్మదిగా చెప్పండి: 'ఎరుపు కప్పులో రెండు మూతలు వేసి, తర్వాత నీలం కప్పును నా వద్దకు తీసుకురా'",
-                        "ఒత్తిడి లేకుండా, బిడ్డ రెండు సూచనలను సరైన వరుసలో పూర్తి చేశారో లేదో పరిశీలించండి"
+                        "పిల్లవాడిని అడగండి: 'ఎరుపు కప్పులో రెండు మూతలు వేసి, తరువాత నీలం కప్పును నా దగ్గరకు తీసుకురా'",
+                        "చిరునవ్వు చిందిస్తూ, రెండు పనులను క్రమంలో పూర్తి చేశాడో లేదో గమనించండి"
                     ),
-                    whatToObserve = "బిడ్డ రెండు వరుస సూచనలను గుర్తుంచుకుని, వస్తువులతో స్వయంగా చేయగలుగుతున్నారా?",
-                    parentExplanation = "ఈరోజు రవి 5 నిమిషాల కప్పుల ఆట ఆడాడు. వరుసగా రెండు పనులు చేయడం సాధన చేశాడు. మీరు ఇంట్లో కూడా: 'స్పూన్ తీసి ప్లేటులో పెట్టు' వంటి సరళమైన పనులు చెప్పి ప్రోత్సహించవచ్చు."
+                    whatToObserve = "పిల్లవాడు రెండు పనుల సూచనలను గుర్తుంచుకుని పూర్తి చేయగలిగాడా?",
+                    parentExplanation = "ఈరోజు $childName 5 నిమిషాల కప్పుల ఆట ఆడారు. రెండు పనులను క్రమంగా చేయడం నేర్చుకున్నారు. ఇంట్లో: 'స్పూన్ తీసి ప్లేటులో పెట్టు' అని చెప్పి ప్రాక్టీస్ చేయించండి."
                 )
                 Language.HINDI -> LocalizedActivityContent(
-                    title = "रंग-बिरंगे कप गतिविधि (Colour Cup Challenge)",
+                    title = "रंग-बिरंगे कप चुनौती (Colour Cup Challenge)",
                     requiredMaterials = listOf("प्लास्टिक कप", "बोतल के ढक्कन"),
                     steps = listOf(
-                        "चटाई पर एक लाल कप और एक नीला कप रखें",
+                        "चटाई पर एक लाल और एक नीला कप रखें",
                         "बच्चे से कहें: 'लाल कप में दो ढक्कन रखो, फिर नीला कप मेरे पास लाओ'",
-                        "मुस्कुराते हुए देखें कि क्या दोनों काम क्रम से पूरे किए गए"
+                        "मुस्कुराते हुए देखें कि क्या दोनों निर्देश क्रम से पूरे किए गए"
                     ),
-                    whatToObserve = "क्या बच्चा दो लगातार निर्देशों को याद रखकर वस्तुओं के साथ पूरा कर पाता है?",
-                    parentExplanation = "आज रवि ने 5 मिनट का एक खेल खेला जिसमें उसने दो निर्देश एक के बाद एक पूरे करने का अभ्यास किया। आप घर पर कह सकते हैं: 'चम्मच उठाओ और थाली में रखो'।"
+                    whatToObserve = "क्या बच्चा दो निर्देशों को याद रखकर क्रम से पूरा कर पा रहा है?",
+                    parentExplanation = "आज $childName ने 5 मिनट का कप खेल खेला। घर पर कहें: 'चम्मच उठाओ और थाली में रखो'।"
                 )
                 Language.ENGLISH -> LocalizedActivityContent(
                     title = "Colour Cup Challenge",
@@ -49,28 +121,29 @@ object ActivityLocalization {
                     parentExplanation = "Today $childName played a 5-minute cup game where he practiced following two small actions in order. You can ask him at home: 'Pick up your spoon and put it on the plate'."
                 )
             }
+
             "act_object_sorting" -> when (language) {
                 Language.TELUGU -> LocalizedActivityContent(
-                    title = "పెద్ద & చిన్న ఆకుల వర్గీకరణ",
+                    title = "పెద్ద & చిన్న ఆకుల వర్గీకరణ (Big & Small Leaf Matching)",
                     requiredMaterials = listOf("ఆకులు", "కాగితం"),
                     steps = listOf(
                         "3 పెద్ద ఆకులు, 3 చిన్న ఆకులు సేకరించండి",
                         "కాగితంపై రెండు వృత్తాలు (ఒకటి పెద్దది, ఒకటి చిన్నది) గీయండి",
-                        "బిడ్డను ఆకులను వాటి పరిమాణానికి తగిన వృత్తంలో ఉంచమని చెప్పండి"
+                        "ఆకులను సరైన వృత్తంలో వేరు చేసి పెట్టమని పిల్లవాడిని అడగండి"
                     ),
-                    whatToObserve = "బిడ్డ పరిమాణాల మధ్య తేడాను గుర్తించి స్వయంగా వర్గీకరించగలుగుతున్నారా?",
-                    parentExplanation = "ఈరోజు పెద్ద మరియు చిన్న ఆకులను వేరు చేసే ఆట ఆడాము. ఇంట్లో కూడా పెద్ద స్పూన్లు, చిన్న స్పూన్లను వేరు చేసే ఆట ఆడించవచ్చు."
+                    whatToObserve = "పరిమాణ భేదాన్ని గుర్తించి సొంతంగా వేరు చేయగలిగాడా?",
+                    parentExplanation = "ఈరోజు పెద్ద మరియు చిన్న ఆకులను వేరు చేయడం ప్రాక్టీస్ చేశాము. ఇంట్లో పెద్ద ఉల్లిపాయలు, చిన్న ఉల్లిపాయలు వేరు చేయించండి."
                 )
                 Language.HINDI -> LocalizedActivityContent(
-                    title = "छोटे और बड़े पत्तों की पहचान",
-                    requiredMaterials = listOf("पत्ते", "कागज़"),
+                    title = "पत्तियों की पहचान और छंटाई (Big & Small Leaf Matching)",
+                    requiredMaterials = listOf("पत्तियां", "कागज"),
                     steps = listOf(
-                        "3 बड़े पत्ते और 3 छोटे पत्ते इकट्ठा करें",
-                        "कागज़ पर दो गोले (एक बड़ा, एक छोटा) बनाएं",
-                        "बच्चे से पत्तों को उनके आकार के अनुसार सही गोले में रखने को कहें"
+                        "3 बड़ी और 3 छोटी पत्तियां इकट्ठा करें",
+                        "कागज पर दो घेरे (बड़ा और छोटा) बनाएं",
+                        "बच्चे से पत्तियों को सही घेरे में रखने को कहें"
                     ),
-                    whatToObserve = "क्या बच्चा आकार के अंतर को समझकर खुद अलग कर पाता है?",
-                    parentExplanation = "आज हमने पत्तों को छोटे-बड़े आकार में अलग करने का खेल खेला। घर पर आप बड़े और छोटे चम्मच अलग करवा सकते हैं।"
+                    whatToObserve = "क्या बच्चा आकार पहचानकर अलग कर पाता है?",
+                    parentExplanation = "आज हमने बड़े और छोटे पत्तों को अलग करना सीखा। घर पर भी बड़े और छोटे चम्मच अलग करवाएं।"
                 )
                 Language.ENGLISH -> LocalizedActivityContent(
                     title = "Big & Small Leaf Matching",
@@ -84,74 +157,112 @@ object ActivityLocalization {
                     parentExplanation = "Today we practiced sorting leaves by size. At home, ask the child to help separate big and small onions or spoons."
                 )
             }
-            "act_thread_beads" -> when (language) {
+
+            "act_animal_sounds" -> when (language) {
                 Language.TELUGU -> LocalizedActivityContent(
-                    title = "దారంలో మూతలు గుచ్చడం",
-                    requiredMaterials = listOf("రంధ్రాలున్న మూతలు", "దారం"),
+                    title = "జంతువుల శబ్దాల ఆట (Animal Sound Safari)",
+                    requiredMaterials = listOf("జంతువుల బొమ్మలు లేదా చిత్రాలు"),
                     steps = listOf(
-                        "రంధ్రాలు ఉన్న బాటిల్ మూతలు లేదా దారపు రీళ్లు తీసుకోండి",
-                        "బిడ్డకు దారంలో 3 మూతలను గుచ్చడానికి సహాయం చేయండి",
-                        "వేళ్ల పట్టు, ఏకాగ్రతను మెచ్చుకోండి"
+                        "ఆవు శబ్దం ('అంబా') చేస్తూ పిల్లవాడికి చూపించండి",
+                        "'కుక్క ఎలా మొరుగుతుంది?' అని అడగండి",
+                        "పిల్లవాడు పలికే ప్రతి శబ్దాన్ని మెచ్చుకోండి"
                     ),
-                    whatToObserve = "వేళ్ల పట్టు (పిన్సర్ గ్రాస్ప్) మరియు కంటి-చేతి సమన్వయం ఎలా ఉంది?",
-                    parentExplanation = "పిల్లవాడు దారంలో మూతలను గుచ్చడం సాధన చేశాడు. ఇది భవిష్యత్తులో పెన్సిల్ పట్టుకోవడానికి చేతి వేళ్లకు బలాన్ని ఇస్తుంది."
+                    whatToObserve = "పిల్లవాడు శబ్దాలను అనుకరిస్తూ జంతువులతో కనెక్ట్ చేయగలుగుతున్నాడా?",
+                    parentExplanation = "జంతువుల శబ్దాలు పలకడం వల్ల పిల్లల భాషా పరిజ్ఞానం పెరుగుతుంది. ఇంట్లో ఆవు, పిల్లి శబ్దాలు పలికించండి."
                 )
                 Language.HINDI -> LocalizedActivityContent(
-                    title = "धागे में ढक्कन पिरोना",
-                    requiredMaterials = listOf("ढक्कन", "धागा"),
+                    title = "जानवरों की आवाज़ें (Animal Sound Safari)",
+                    requiredMaterials = listOf("जानवरों के चित्र"),
                     steps = listOf(
-                        "छेद वाले ढक्कन या धागे की खाली रील लें",
-                        "बच्चे को धागे में 3 वस्तुएं पिरोने के लिए प्रेरित करें",
-                        "उंगलियों की पकड़ और स्थिरता की प्रशंसा करें"
+                        "गाय की आवाज़ ('अंबा') निकालें",
+                        "पूछें: 'कुत्ता कैसे भौंकता है?'",
+                        "हर आवाज़ पर बच्चे की प्रशंसा करें"
                     ),
-                    whatToObserve = "उंगलियों की पकड़ और हाथ-आंखों का समन्वय कैसा है?",
-                    parentExplanation = "बच्चे ने धागे में ढक्कन पिरोने का अभ्यास किया। इससे आगे चलकर पेंसिल पकड़ने में मदद मिलती है।"
+                    whatToObserve = "क्या बच्चा आवाज़ों की नकल कर पाता है?",
+                    parentExplanation = "जानवरों की आवाज़ें निकालने से बच्चे की बोलने की क्षमता बढ़ती है।"
                 )
                 Language.ENGLISH -> LocalizedActivityContent(
-                    title = "Bottle Cap Threading",
-                    requiredMaterials = listOf("Bottle caps", "Thread"),
+                    title = "Animal Sound Safari",
+                    requiredMaterials = listOf("Animal picture cards"),
                     steps = listOf(
-                        "Use caps with small holes or empty thread spools",
-                        "Guide the child to thread string through 3 items",
-                        "Praise steady finger control"
+                        "Make a cow sound ('Ambaa') and show action",
+                        "Ask child: 'How does the puppy bark?'",
+                        "Celebrate each sound the child repeats"
                     ),
-                    whatToObserve = "Pincer grasp and hand-eye coordination stability.",
-                    parentExplanation = "Your child practiced threading thread through bottle caps. This builds finger strength for holding pencils later."
+                    whatToObserve = "Does the child mimic sounds and connect them with familiar animals?",
+                    parentExplanation = "Making animal sounds expands speech vocabulary and listening skills."
                 )
             }
-            else -> when (language) {
+
+            "act_letter_tracing" -> when (language) {
                 Language.TELUGU -> LocalizedActivityContent(
-                    title = "రెండు చిత్రాల కథా క్రమం",
-                    requiredMaterials = listOf("స్లేటు", "సుద్దముక్క"),
+                    title = "పలకపై అక్షరాల దిద్దుడు (Slate Letter Tracing)",
+                    requiredMaterials = listOf("పలక", "సుద్దబలపం"),
                     steps = listOf(
-                        "స్లేటుపై సూర్యోదయం, తర్వాత పళ్ళు తోముకోవడం బొమ్మలు గీయండి",
-                        "బిడ్డను అడగండి: 'మనం మొదట ఏమి చేస్తాం? తర్వాత ఏమి చేస్తాం?'",
-                        "బిడ్డ తన సొంత మాటల్లో వరుసక్రమం చెప్పేలా ప్రోత్సహించండి"
+                        "పలకపై పిల్లవాడి పేరు మొదటి అక్షరం పెద్దగా రాయండి",
+                        "అక్షరం శబ్దం చెబుతూ పిల్లవాడి వేలితో దానిపై దిద్దించండి",
+                        "బలపంతో 3 సార్లు దిద్దమని ప్రోత్సహించండి"
                     ),
-                    whatToObserve = "మొదట ఏది జరుగుతుంది, తర్వాత ఏది జరుగుతుందో బిడ్డ మాటల్లో చెప్పగలుగుతున్నారా?",
-                    parentExplanation = "ఉదయం మొదట ఏమి చేస్తాము, తర్వాత ఏమి చేస్తాము అనే వరుసక్రమం మాట్లాడాము."
+                    whatToObserve = "పిల్లవాడు బలపం సరైన పద్ధతిలో పట్టుకుని అక్షరాన్ని దిద్దగలుగుతున్నాడా?",
+                    parentExplanation = "పలకపై అక్షరాల దిద్దుడు పిల్లలను 1వ తరగతి చదువుకు సిద్ధం చేస్తుంది. ఇంట్లో కూడా బలపంతో రాయిస్తూ ఉండండి."
                 )
                 Language.HINDI -> LocalizedActivityContent(
-                    title = "दो चित्रों से कहानी का क्रम",
+                    title = "स्लेट पर अक्षर अभ्यास (Slate Letter Tracing)",
                     requiredMaterials = listOf("स्लेट", "चॉक"),
                     steps = listOf(
-                        "स्लेट पर सूरज उगने और ब्रश करने का चित्र बनाएं",
-                        "बच्चे से पूछें: 'पहले हम क्या करते हैं? फिर उसके बाद क्या?'",
-                        "बच्चे को अपने शब्दों में क्रम समझाने के लिए प्रोत्साहित करें"
+                        "स्लेट पर बच्चे के नाम का पहला अक्षर बड़ा लिखें",
+                        "अक्षर की ध्वनि बोलें और बच्चे की उंगली उसपर फिराएं",
+                        "चॉक से 3 बार दोहराने को कहें"
                     ),
-                    whatToObserve = "क्या बच्चा पहले और बाद की घटना को अपने शब्दों में व्यक्त कर पाता है?",
-                    parentExplanation = "हमने बात की कि सुबह पहले क्या करते हैं और फिर क्या। घर पर भी ऐसे सवाल पूछें।"
+                    whatToObserve = "क्या बच्चा सही मुद्रा में चॉक पकड़कर अक्षर बना पाता है?",
+                    parentExplanation = "स्लेट पर अक्षरों का अभ्यास बच्चे को पहली कक्षा के लिए तैयार करता है।"
                 )
                 Language.ENGLISH -> LocalizedActivityContent(
-                    title = "Two-Picture Story Clues",
-                    requiredMaterials = listOf("Paper", "Chalk"),
+                    title = "Slate Letter Tracing & Sounds",
+                    requiredMaterials = listOf("Slate", "Chalk"),
                     steps = listOf(
-                        "Draw sun rising, then child brushing teeth on slate",
-                        "Ask child: 'What do we do first? What do we do next?'",
-                        "Encourage child to explain sequence in their words"
+                        "Write first letter of child's name in large font on slate",
+                        "Say the sound clearly and guide child's finger over it",
+                        "Ask child to trace with chalk 3 times"
                     ),
-                    whatToObserve = "Can the child verbalize what happens first and what happens next?",
-                    parentExplanation = "We talked about what we do first and next in the morning. Ask your child what happens after bath time."
+                    whatToObserve = "Can the child maintain correct finger posture and trace without lifting chalk abruptly?",
+                    parentExplanation = "Tracing letters on slate prepares children for primary school writing and phonics."
+                )
+            }
+
+            else -> when (language) {
+                Language.TELUGU -> LocalizedActivityContent(
+                    title = "వికాస ఆట (Developmental Activity)",
+                    requiredMaterials = listOf("కేంద్రంలో లభించే వస్తువులు"),
+                    steps = listOf(
+                        "పిల్లవాడిని చాపపై కూర్చోబెట్టి సరదాగా మాట్లాడండి",
+                        "చేతులతో వస్తువులను పట్టుకోవడం సాధన చేయించండి",
+                        "ప్రతి విజయానికి చప్పట్లతో ప్రోత్సహించండి"
+                    ),
+                    whatToObserve = "పిల్లవాడి ఆసక్తి మరియు చురుకుదనం గమనించండి.",
+                    parentExplanation = "ఈరోజు పిల్లవాడితో ఆనందదాయకమైన వికాస ఆట ఆడించాము."
+                )
+                Language.HINDI -> LocalizedActivityContent(
+                    title = "बाल विकास गतिविधि (Developmental Activity)",
+                    requiredMaterials = listOf("केंद्र में उपलब्ध सामग्री"),
+                    steps = listOf(
+                        "बच्चे को चटाई पर बैठाकर प्यार से बात करें",
+                        "हाथों से वस्तुओं को पकड़ने का अभ्यास कराएं",
+                        "बच्चे की हर छोटी सफलता पर ताली बजाएं"
+                    ),
+                    whatToObserve = "बच्चे की एकाग्रता और रुचि देखें।",
+                    parentExplanation = "आज बच्चे के साथ विकास गतिविधि की गई।"
+                )
+                Language.ENGLISH -> LocalizedActivityContent(
+                    title = "Developmental Activity",
+                    requiredMaterials = listOf("Center materials"),
+                    steps = listOf(
+                        "Sit comfortably on mat with the child",
+                        "Practice holding and placing physical items",
+                        "Praise the child with smiles and claps"
+                    ),
+                    whatToObserve = "Observe engagement, focus, and hand movement.",
+                    parentExplanation = "Today we practiced an engaging developmental learning activity."
                 )
             }
         }

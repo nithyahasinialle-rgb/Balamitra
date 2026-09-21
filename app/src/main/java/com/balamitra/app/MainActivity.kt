@@ -259,6 +259,13 @@ fun BalamitraApp(
             }
 
 
+            if (state.isAttendanceDialogOpen) {
+                com.balamitra.ui.components.AttendanceDialog(
+                    state = state,
+                    viewModel = viewModel
+                )
+            }
+
             if (state.isAddChildDialogOpen) {
                 com.balamitra.ui.components.AddChildDialog(
                     state = state,

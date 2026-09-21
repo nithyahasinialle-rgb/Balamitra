@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
         MaterialInventoryEntity::class,
         WorkerOverrideLogEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class BalamitraDatabase : RoomDatabase() {
@@ -44,6 +44,15 @@ abstract class BalamitraDatabase : RoomDatabase() {
                 )
                 .fallbackToDestructiveMigration()
                 .addCallback(object : Callback() {
+                    override fun onOpen(db: SupportSQLiteDatabase) {
+                        super.onOpen(db)
+                        CoroutineScope(Dispatchers.IO).launch {
+                            val database = getInstance(context)
+                            database.childDao().insertChildren(SeedData.children)
+                            database.activityDao().insertActivities(SeedData.activities)
+                            database.materialDao().insertMaterials(SeedData.materials)
+                        }
+                    }
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
                         CoroutineScope(Dispatchers.IO).launch {

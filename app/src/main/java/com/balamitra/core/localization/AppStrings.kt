@@ -2,6 +2,7 @@ package com.balamitra.core.localization
 
 import androidx.compose.runtime.compositionLocalOf
 import com.balamitra.core.model.Language
+import java.util.Calendar
 
 data class Strings(
     // App & Identity
@@ -35,6 +36,15 @@ data class Strings(
     val hotCookedMeal: String,
     val mealDistributed: String,
     val locationLabel: String,
+    val sampleCredentialsTitle: String,
+    val logoutBtn: String,
+    val markAttendanceBtn: String,
+    val attendanceDialogTitle: String,
+    val markAllPresent: String,
+    val saveAttendance: String,
+    val presentLabel: String,
+    val absentLabel: String,
+    val mealMenuLabel: String,
 
     // Today Screen
     val todayTitle: String,
@@ -177,6 +187,15 @@ val EnglishStrings = Strings(
     hotCookedMeal = "Hot Cooked Meal: Distributed (Rice, Dal, Egg)",
     mealDistributed = "Meal Distributed ✓",
     locationLabel = "Bachupally, Medchal-Malkajgiri (Hyderabad), Telangana",
+    sampleCredentialsTitle = "Sample Teacher Credentials (Bachupally AWC 1)",
+    logoutBtn = "Logout",
+    markAttendanceBtn = "Mark Attendance",
+    attendanceDialogTitle = "Daily Attendance Register",
+    markAllPresent = "Mark All Present",
+    saveAttendance = "Save Attendance",
+    presentLabel = "Present",
+    absentLabel = "Absent",
+    mealMenuLabel = "Menu",
     todayTitle = "WHAT SHOULD I DO TODAY?",
     todaySubtitle = "Daily action priorities based on longitudinal observations and center materials",
     priorityAction = "RECOMMENDED ACTION:",
@@ -297,6 +316,15 @@ val TeluguStrings = Strings(
     hotCookedMeal = "వేడి భోజనం: పంపిణీ చేయబడింది (అన్నం, పప్పు, గుడ్డు)",
     mealDistributed = "భోజనం పంపిణీ పూర్తయింది ✓",
     locationLabel = "బాచుపల్లి, మేడ్చల్-మల్కాజిగిరి (హైదరాబాద్), తెలంగాణ",
+    sampleCredentialsTitle = "నమూనా ఉపాధ్యాయురాలి లాగిన్ వివరాలు (బాచుపల్లి AWC 1)",
+    logoutBtn = "లాగౌట్",
+    markAttendanceBtn = "హాజరు నమోదు",
+    attendanceDialogTitle = "రోజువారీ హాజరు పట్టిక",
+    markAllPresent = "అందరినీ హాజరుగా గుర్తించు",
+    saveAttendance = "హాజరు భద్రపరచు",
+    presentLabel = "హాజరు",
+    absentLabel = "గైర్హాజరు",
+    mealMenuLabel = "మెనూ",
     todayTitle = "ఈరోజు నేను ఏమి చేయాలి?",
     todaySubtitle = "గత పరిశీలనలు మరియు కేంద్రంలోని వస్తువుల ఆధారంగా నేటి ముఖ్యమైన పనులు",
     priorityAction = "సూచించిన కార్యాచరణ:",
@@ -417,6 +445,15 @@ val HindiStrings = Strings(
     hotCookedMeal = "गर्म पका भोजन: वितरित (चावल, दाल, अंडा)",
     mealDistributed = "भोजन वितरित किया गया ✓",
     locationLabel = "बाचुपल्ली, मेडचल-मलकाजगिरी (हैदराबाद), तेलंगाना",
+    sampleCredentialsTitle = "नमूना शिक्षक क्रेडेंशियल्स (बाचुपल्ली AWC 1)",
+    logoutBtn = "लॉगआउट",
+    markAttendanceBtn = "उपस्थिति दर्ज करें",
+    attendanceDialogTitle = "दैनिक उपस्थिति रजिस्टर",
+    markAllPresent = "सभी को उपस्थित चिह्नित करें",
+    saveAttendance = "उपस्थिति सहेजें",
+    presentLabel = "उपस्थित",
+    absentLabel = "अनुपस्थित",
+    mealMenuLabel = "मेनू",
     todayTitle = "आज मुझे क्या करना चाहिए?",
     todaySubtitle = "पिछले अवलोकनों और केंद्र सामग्री के आधार पर प्राथमिकताएं",
     priorityAction = "सुझाई गई गतिविधि:",
@@ -521,3 +558,44 @@ fun getStrings(language: Language): Strings {
 }
 
 val LocalAppStrings = compositionLocalOf { EnglishStrings }
+
+
+fun getDayOfWeekLocalized(calendarDay: Int, lang: Language): String {
+    return when (calendarDay) {
+        Calendar.MONDAY -> when (lang) {
+            Language.TELUGU -> "సోమవారం"
+            Language.HINDI -> "सोमवार"
+            Language.ENGLISH -> "Monday"
+        }
+        Calendar.TUESDAY -> when (lang) {
+            Language.TELUGU -> "మంగళవారం"
+            Language.HINDI -> "मंगलवार"
+            Language.ENGLISH -> "Tuesday"
+        }
+        Calendar.WEDNESDAY -> when (lang) {
+            Language.TELUGU -> "బుధవారం"
+            Language.HINDI -> "बुधवार"
+            Language.ENGLISH -> "Wednesday"
+        }
+        Calendar.THURSDAY -> when (lang) {
+            Language.TELUGU -> "గురువారం"
+            Language.HINDI -> "गुरुवार"
+            Language.ENGLISH -> "Thursday"
+        }
+        Calendar.FRIDAY -> when (lang) {
+            Language.TELUGU -> "శుక్రవారం"
+            Language.HINDI -> "शुक्रवार"
+            Language.ENGLISH -> "Friday"
+        }
+        Calendar.SATURDAY -> when (lang) {
+            Language.TELUGU -> "శనివారం"
+            Language.HINDI -> "शनिवार"
+            Language.ENGLISH -> "Saturday"
+        }
+        else -> when (lang) {
+            Language.TELUGU -> "ఆదివారం"
+            Language.HINDI -> "रविवार"
+            Language.ENGLISH -> "Sunday"
+        }
+    }
+}

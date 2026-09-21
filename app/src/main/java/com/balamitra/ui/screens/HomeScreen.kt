@@ -31,6 +31,8 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material.icons.filled.HowToReg
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -114,14 +116,25 @@ fun HomeScreen(
             }
         }
 
-        // Daily Center Operations Status Card
+        // Daily Center Operations Status & Attendance Card
         item {
+            val calendar = java.util.Calendar.getInstance()
+            val dayOfWeek = calendar.get(java.util.Calendar.DAY_OF_WEEK)
+            val currentDayLocalized = com.balamitra.core.localization.getDayOfWeekLocalized(dayOfWeek, state.currentLanguage)
+            val formattedDate = java.text.SimpleDateFormat("dd MMM yyyy", java.util.Locale.getDefault()).format(calendar.time)
+
+            val totalEnrolled = if (state.children.isNotEmpty()) state.children.size else 15
+            val presentCount = if (state.attendanceMap.isNotEmpty()) state.attendanceMap.values.count { it } else 13
+            val attendancePercent = if (totalEnrolled > 0) (presentCount * 100) / totalEnrolled else 87
+
             Card(
                 colors = CardDefaults.cardColors(containerColor = Color(0xFFE8F8F5)),
                 shape = RoundedCornerShape(14.dp),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFA3E4D7)),
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(modifier = Modifier.padding(14.dp)) {
+                    // Status & Meal Header
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -130,7 +143,7 @@ fun HomeScreen(
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Box(
                                 modifier = Modifier
-                                    .size(8.dp)
+                                    .size(9.dp)
                                     .clip(CircleShape)
                                     .background(Color(0xFF27AE60))
                             )
@@ -152,23 +165,72 @@ fun HomeScreen(
                         )
                     }
 
-                    Spacer(modifier = Modifier.height(6.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
 
+                    // Synchronized Day & Real Attendance Progress
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.Bottom
                     ) {
-                        Text(
-                            text = s.dailyAttendance,
-                            fontSize = 11.sp,
-                            color = Color(0xFF117A65)
-                        )
-                        Text(
-                            text = "THR: ${status.thrDistributionDay}",
-                            fontSize = 11.sp,
-                            color = Color(0xFF117A65)
-                        )
+                        Column {
+                            Text(
+                                text = "$currentDayLocalized ($formattedDate)",
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFF117A65)
+                            )
+                            Spacer(modifier = Modifier.height(2.dp))
+                            Text(
+                                text = "${s.dailyAttendance}: $presentCount / $totalEnrolled ${s.presentLabel} ($attendancePercent%)",
+                                fontSize = 11.5.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                color = Color(0xFF145A32)
+                            )
+                        }
+
+                        Button(
+                            onClick = { viewModel.setAttendanceDialogOpen(true) },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFF16A085),
+                                contentColor = Color.White
+                            ),
+                            shape = RoundedCornerShape(8.dp),
+                            contentPadding = PaddingValues(horizontal = 10.dp, vertical = 5.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.HowToReg,
+                                contentDescription = null,
+                                modifier = Modifier.size(14.dp)
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text(
+                                text = s.markAttendanceBtn,
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
                     }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    LinearProgressIndicator(
+                        progress = { presentCount.toFloat() / totalEnrolled.toFloat() },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(6.dp)
+                            .clip(RoundedCornerShape(3.dp)),
+                        color = Color(0xFF27AE60),
+                        trackColor = Color(0xFFD4EFDF),
+                    )
+
+                    Spacer(modifier = Modifier.height(6.dp))
+
+                    Text(
+                        text = "${s.mealMenuLabel}: ${status.mealMenu}",
+                        fontSize = 10.5.sp,
+                        color = Color(0xFF117A65)
+                    )
                 }
             }
         }
@@ -192,7 +254,7 @@ fun HomeScreen(
 
         // Hero Card: Ravi's Personalized Priority Activity
         item {
-            val ravi = state.children.find { it.name == "Ravi" } ?: state.children.firstOrNull()
+            val ravi = state.children.find { it.name == "Raju" } ?: state.children.firstOrNull()
             Card(
                 colors = CardDefaults.cardColors(containerColor = Color.White),
                 shape = RoundedCornerShape(16.dp),
@@ -224,7 +286,7 @@ fun HomeScreen(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(
-                                    text = "R",
+                                    text = "${(ravi?.name ?: "R").take(1)}",
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 20.sp,
                                     color = MaterialTheme.colorScheme.onPrimaryContainer
@@ -233,7 +295,7 @@ fun HomeScreen(
                             Spacer(modifier = Modifier.width(12.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
-                                    text = "Ravi (${ravi?.ageYears ?: 4} yrs)",
+                                    text = "${ravi?.name ?: "Raju"} (${ravi?.ageYears ?: 4} yrs)",
                                     style = MaterialTheme.typography.titleMedium,
                                     fontWeight = FontWeight.Bold,
                                     maxLines = 1,
@@ -308,9 +370,9 @@ fun HomeScreen(
 
         // Action Card 2: Ananya
         item {
-            val ananya = state.children.find { it.name == "Ananya" }
+            val ananya = state.children.find { it.name == "Lakshmi" } ?: state.children.getOrNull(1)
             TodayActionCard(
-                childName = "Ananya (${ananya?.ageYears ?: 3} yrs)",
+                childName = "${ananya?.name ?: "Lakshmi"} (${ananya?.ageYears ?: 3} yrs)",
                 guardianInfo = "${s.motherName}: ${ananya?.motherName ?: "Smt. Sunita Sharma"}",
                 category = s.homeAnanyaCategory,
                 actionPrompt = s.homeAnanyaAction,
@@ -327,9 +389,9 @@ fun HomeScreen(
 
         // Action Card 3: Meena
         item {
-            val meena = state.children.find { it.name == "Meena" }
+            val meena = state.children.find { it.name == "Chitti" } ?: state.children.getOrNull(2)
             TodayActionCard(
-                childName = "Meena (${meena?.ageYears ?: 2} yrs)",
+                childName = "${meena?.name ?: "Chitti"} (${meena?.ageYears ?: 2} yrs)",
                 guardianInfo = "${s.fatherName}: ${meena?.fatherName ?: "Sri M. Srinivasulu"}",
                 category = s.homeMeenaCategory,
                 actionPrompt = s.homeMeenaAction,
