@@ -1,116 +1,572 @@
-# Balamitra: AI-Powered Early Childhood Development Platform
+# BALAMITRA
 
-> **An offline-first, empathetic intelligence system built for India's 1.4 million Anganwadi workers, transforming early childhood monitoring from administrative paperwork into proactive, compassionate care.**
+### Understand every child. Know what to do next.
 
----
+BALAMITRA is an offline-first AI assistant for Anganwadi workers, designed to make everyday child monitoring simpler, more connected and more useful.
 
-## 1. Executive Summary & Problem Context
+The idea started with a simple observation: Anganwadi workers already know a lot about the children they work with. They observe them, track their growth, conduct activities, interact with families and maintain records every day. The difficulty is keeping all of that information organized and useful over time.
 
-According to India's **National Family Health Survey (NFHS-5)**, malnutrition and unmonitored developmental delays remain significant public health challenges among children under five years of age:
-
-- **35.5%** of children under five are **stunted** (chronically malnourished).
-- **19.3%** are **wasted** (acutely malnourished).
-- **32.1%** are **underweight**.
-- Over **80% of human brain architecture** forms before age three, and **90%** by age five. Early intervention within the first 1,000 to 2,000 days can reverse potential cognitive and physical deficits, whereas unaddressed delays become permanent.
-
-India's **Integrated Child Development Services (ICDS)** network deploys over **1.4 million Anganwadi workers (AWWs)** across rural hamlets and urban wards. While these workers serve on the frontline of community healthcare, significant systemic friction hinders their efficacy:
-
-1. **Severe Administrative Overhead**: An Anganwadi worker manages 30 to 50 children single-handedly, spending **30% to 40% of her daily shift** (2 to 3 hours) manually updating up to 11 physical registers.
-2. **The Clinical Communication Gap**: Communicating statistical metrics such as *"-2.5 SD Z-score"* or *"Moderate Stunting"* to rural mothers often creates fear, defensive withdrawal, or stigma rather than collaborative nutritional care.
-3. **Connectivity Deficits**: Over 60% of rural Anganwadi centers operate in areas with erratic or non-existent 3G/4G connectivity, rendering cloud-dependent systems unusable.
-
-**Balamitra** bridges this gap by functioning as an intelligent, offline-first digital assistant that eliminates data entry friction, translates growth statistics into empathetic counseling, and surfaces developmental trends before acute issues manifest.
+BALAMITRA helps bring those observations together, understand them in context and turn them into practical next steps.
 
 ---
 
-## 2. Core LLM & AI Integration
+## Why we built BALAMITRA
 
-Balamitra incorporates on-device intelligence and language modeling specifically architected for low-resource community health environments:
+As part of our design process, we visited an Anganwadi centre in Hyderabad and spoke with an Anganwadi worker about her day-to-day workflow.
 
-### A. Empathetic Parent Counseling Engine (De-Stigmatizing Clinical Data)
-Standard healthcare software presents mothers with alarmist alerts or raw clinical percentiles. Balamitra's natural language engine transforms WHO anthropometric classifications into empathetic, culturally contextualized counseling narratives in the mother's local language (Telugu, Hindi, or English):
-- **De-escalates Parental Anxiety**: Formulates positive, collaborative framing that emphasizes the child's strengths while constructively identifying growth gaps.
-- **Locally Accessible Dietary Recommendations**: Avoids prescribing expensive commercial supplements, instead identifying specific, affordable kitchen ingredients (e.g., groundnut powder, roasted gram, drumstick leaves, eggs, and jaggery) accessible to rural households.
-- **Home Visit Dialogue Scripts**: Generates conversational prompts tailored for the worker's home visits, strengthening trust between the family and the Anganwadi center.
+We found that workers deal with:
 
-### B. Longitudinal Trend Synthesis ("Connect the Dots")
-Isolated measurements often hide emerging health crises until a child falls into Severe Acute Malnutrition (SAM). Balamitra's synthesis engine analyzes longitudinal multi-stream data across 30 to 90 days:
-- **Multi-Factor Correlation**: Correlates velocity changes across height, weight, meal attendance, and motor milestones.
-- **Causal Contextualization**: Rather than just noting a 400g weight loss, the engine connects recent illness history or meal absence to provide an actionable explanation:
-  > *"Ramesh maintained linear height progression (+1.2 cm), but weight velocity stagnated following reported fever two weeks ago. Fine-motor grip score remains stable. Recommendation: Add local calorie-dense supplementation and monitor hydration for 14 days."*
+- Registering and maintaining records for many children
+- Recording height, weight and other observations
+- Tracking nutrition and developmental information
+- Conducting activities using books and reference material
+- Following up on children based on their observations
+- Managing information spread across different records and tools
 
-### C. Hands-Free Conversational Voice Intake
-An Anganwadi worker rarely has both hands free while holding an active toddler or balancing a hanging spring scale. Balamitra features a localized speech recognition and tokenization pipeline:
-- Supports natural spoken intake in **Telugu**, **Hindi**, and **English**.
-- Automatically extracts **Child Name**, **Age**, **Gender**, **Weight**, **Height**, **Parents' Names**, and **Ward** directly from continuous speech.
-- Reduces child admission time from 4-5 minutes of manual form filling to a single 15-second spoken utterance.
+The problem was not a lack of information or effort.
 
-### D. Privacy-First Edge Architecture & Frugal Data Usage
-- **100% Offline Capability**: All assessments, WHO Z-score calculations, and child profiles reside securely in an encrypted local SQLite (Room) database.
-- **Sub-5 KB Sync Payloads**: Synchronization packets are compressed into structured cryptographic deltas (<5 KB per transmission), allowing successful synchronization even over intermittent 2G/EDGE networks.
+It was the amount of information the worker has to **record, remember and connect**.
+
+We wanted to build something that supports that work rather than adding another system for the worker to maintain.
+
+> **The worker knows the child. BALAMITRA remembers the journey.**
 
 ---
 
-## 3. System Architecture & Feature Comparison
+# What BALAMITRA does
 
-| Functional Area | Conventional Anganwadi Workflow | Balamitra AI-Powered Platform |
-| :--- | :--- | :--- |
-| **Child Admission** | 5-7 minutes of manual paper ledger recording | 15-second hands-free voice utterance with instant auto-fill |
-| **Growth Assessment** | Manual reference against printed paper growth charts | Real-time WHO Z-score calculation (HAZ, WAZ, WHZ) with visual health bands |
-| **Parent Communication** | Complex medical jargon or defensive misunderstandings | Empathetic, culturally sensitive counseling scripts in regional languages |
-| **Trend Analysis** | Static month-to-month ledger numbers | Automated longitudinal multi-point synthesis ("Connect the Dots") |
-| **Data Dependency** | Cloud-mandatory apps fail in low-network regions | Fully offline Room database; zero network required for core workflow |
-| **Data Bandwidth** | Megabytes of telemetry and uncompressed payloads | Frugal delta sync packets (<5 KB) optimized for rural 2G networks |
+## 1. Voice-based observations
 
----
+Workers can record observations through voice in:
 
-## 4. Technical Stack
+**Telugu | Hindi | English**
 
-- **Operating System**: Android (API Level 26+ / Android 8.0 through Android 15)
-- **Programming Language**: Kotlin 2.0
-- **User Interface**: Jetpack Compose with Material 3 Design
-- **Local Persistence**: Room Database (SQLite) + Kotlin Coroutines & StateFlow
-- **Voice & NLU**: Android Speech Recognition API + On-device multi-lingual regex tokenization engine
-- **Standards Compliance**: World Health Organization (WHO) Child Growth Standards (0-60 months)
-- **Unit Testing**: JUnit4 test suite validating WHO engine math, milestone heuristics, and voice tokenizers
+Instead of filling out another form, the worker can describe what she observed naturally.
+
+The voice input is processed and converted into structured information that can be stored against the child's profile and used by the rest of the system.
 
 ---
 
-## 5. Verification & Test Suite
+## 2. One continuous child history
 
-The codebase includes test suites verifying core clinical calculations and voice parsing algorithms:
+BALAMITRA brings relevant information about a child into one place.
 
-```bash
-# Run unit tests
+A child's profile can contain:
+
+- Child information
+- Growth observations
+- Nutrition observations
+- Developmental observations
+- Activities and activity attempts
+- Activity outcomes
+- Available materials
+- Worker feedback
+
+This allows the system to consider what has happened previously instead of treating every new observation as an isolated entry.
+
+---
+
+## 3. Connect the Dots
+
+One of BALAMITRA's core features is longitudinal reasoning.
+
+A single observation can be difficult to interpret without context.
+
+BALAMITRA can look across a child's history and connect relevant information from different observations and activities.
+
+Instead of asking only:
+
+> "What happened today?"
+
+the system can consider:
+
+> "What has changed over time, what happened before, and what should we consider next?"
+
+The purpose is not to diagnose a child. It is to help the worker notice patterns and supporting evidence that may otherwise be difficult to see across separate records.
+
+---
+
+## 4. Context-aware AI
+
+BALAMITRA uses a hybrid intelligence architecture.
+
+We do not use a language model for everything.
+
+Deterministic components handle tasks where predictable and reproducible behaviour is important, including:
+
+- Data validation
+- Safety constraints
+- Structured processing
+- WHO-based growth calculations
+- Z-score computation
+- Age and activity constraints
+
+The contextual AI layer is used for tasks that require interpretation, including:
+
+- Multilingual understanding
+- Longitudinal context synthesis
+- Pattern interpretation
+- Natural-language explanations
+- Activity personalization
+- Parent-friendly communication
+
+The design principle is:
+
+> **Use deterministic methods where correctness matters, AI where interpretation matters, and keep the worker in control of the decision.**
+
+---
+
+# Growth Intelligence
+
+BALAMITRA uses the WHO Child Growth Standards and the LMS methodology for growth assessment.
+
+For the LMS method:
+
+$$
+Z =
+\frac{
+\left(\frac{X}{M}\right)^L - 1
+}{
+L \times S
+}
+$$
+
+Where:
+
+- `X` = measured value
+- `M` = reference median
+- `L` = Box-Cox transformation parameter
+- `S` = coefficient of variation
+
+The growth engine supports the relevant anthropometric indicators used by the application, including:
+
+- Weight-for-Age
+- Height-for-Age
+- Weight-for-Height
+
+These calculations are handled by deterministic logic rather than generated by the language model.
+
+This allows the AI layer to use reliable numerical results as context without making the language model responsible for the underlying calculation.
+
+---
+
+# Longitudinal Reasoning
+
+BALAMITRA is designed to work with information collected across time.
+
+For sequential measurements, the system can examine changes such as:
+
+$$
+\Delta W = W_2 - W_1
+$$
+
+and monthly-normalized weight velocity:
+
+$$
+V_w =
+\left(
+\frac{W_2-W_1}{t_2-t_1}
+\right)
+\times 30
+$$
+
+Similarly, height velocity can be represented as:
+
+$$
+V_h =
+\left(
+\frac{H_2-H_1}{t_2-t_1}
+\right)
+\times 30
+$$
+
+These values form part of the longitudinal context used by the system.
+
+---
+
+# Personalized Activities
+
+BALAMITRA does not simply display a fixed list of activities.
+
+The personalization layer considers factors such as:
+
+- Child age
+- Current observations
+- Child history
+- Previous activities
+- Activity outcomes
+- Available materials
+- Worker feedback
+
+This allows the system to recommend activities based on the child's context and the resources available around them.
+
+The worker can then:
+
+**DO | CHANGE | SKIP**
+
+The outcome and feedback become part of the child's continuing history.
+
+This creates a continuous loop:
+
+```text
+OBSERVE
+   ↓
+UNDERSTAND
+   ↓
+REMEMBER
+   ↓
+CONNECT THE DOTS
+   ↓
+RECOMMEND
+   ↓
+WORKER DECIDES
+   ↓
+RE-OBSERVE
+   ↺
+
+
+---
+
+Why This Activity?
+
+AI recommendations should not feel like unexplained outputs.
+
+BALAMITRA provides a "Why This?" view that connects a recommendation to relevant information from the child's context.
+
+The worker can understand the reasoning behind a suggestion and decide whether it makes sense for the child and the situation.
+
+The recommendation is assistance, not a decision.
+
+
+---
+
+Materials and Local Context
+
+Activities also depend on what is actually available at a centre.
+
+BALAMITRA maintains a material inventory that can be used as part of the personalization process.
+
+This means the system can consider:
+
+Child context + activity history + available materials
+
+rather than generating activities in isolation from the environment in which they will be used.
+
+
+---
+
+Insights
+
+BALAMITRA brings information from individual child records together into useful summaries.
+
+Instead of manually searching through separate observations, workers can view relevant patterns and centre-level information in one place.
+
+The aim is to reduce repetitive searching and record management while making existing information more useful.
+
+
+---
+
+Parent-Friendly Communication
+
+Technical information is not always easy to communicate to families.
+
+BALAMITRA's language layer can be used to turn structured observations and growth information into simpler explanations in the preferred language.
+
+The goal is not to replace professional advice or make a diagnosis.
+
+It is to help the worker communicate observations in a way that is clearer and easier for families to understand.
+
+
+---
+
+How the Intelligence Works
+
+WORKER OBSERVATION
+                           |
+                           v
+                Multilingual Input Layer
+                           |
+                           v
+                Structured Observation
+                           |
+                           v
+                  Local Child Memory
+                     Room / SQLite
+                           |
+             +-------------+-------------+
+             |                           |
+             v                           v
+     DETERMINISTIC LAYER          CONTEXTUAL AI
+             |                           |
+     WHO / LMS calculations       Longitudinal context
+     Z-score calculations         Pattern synthesis
+     Validation                   Personalization
+     Safety constraints           Explanations
+     Activity constraints         Natural language
+             |                           |
+             +-------------+-------------+
+                           |
+                           v
+                 Personalized Next Step
+                           |
+                           v
+                    Worker Decision
+                   DO / CHANGE / SKIP
+                           |
+                           v
+                  Updated Child History
+                           |
+                           └──────> Future Context
+
+The architecture deliberately separates numerical and rule-based processing from contextual AI reasoning.
+
+
+---
+
+Core AI Context
+
+The AI reasoning layer can work with information such as:
+
+Current observation
+        +
+Child history
+        +
+Growth information
+        +
+Development observations
+        +
+Previous activity outcomes
+        +
+Available materials
+        +
+Worker feedback
+        ↓
+Contextual reasoning
+        ↓
+Explanation + Personalized next action
+
+This is important because BALAMITRA is not intended to behave like a generic chatbot.
+
+The objective is to give the model relevant context about the child and the worker's environment before generating a response.
+
+
+---
+
+Technical Stack
+
+Component	Technology
+
+Platform	Android
+Language	Kotlin
+UI	Jetpack Compose
+Design System	Material 3
+Local Database	Room / SQLite
+Async / State	Kotlin Coroutines, StateFlow
+Voice Input	Android Speech Recognition API
+Multilingual Processing	On-device parsing and tokenization
+Growth Standards	WHO Child Growth Standards
+AI Architecture	Deterministic + contextual AI
+Minimum Android Version	API 26
+Target SDK	Android 35
+
+
+
+---
+
+Offline-First Design
+
+The core application workflow is designed around local data and local processing.
+
+Child records and application state are stored using Room / SQLite, allowing core workflows to continue without depending on a constant network connection.
+
+This is important for the environment BALAMITRA is designed for.
+
+The system should remain useful even when connectivity cannot be assumed.
+
+
+---
+
+Accessibility and Usability
+
+The interface is designed around quick interaction and different levels of digital familiarity.
+
+Key choices include:
+
+Simple navigation
+
+Large controls
+
+Clear visual hierarchy
+
+Adjustable text size
+
+Voice interaction
+
+Telugu, Hindi and English support
+
+Minimal typing
+
+Offline-first workflows
+
+
+The aim is to make the technology fit into the worker's existing routine rather than forcing her to learn a complicated system.
+
+
+---
+
+Testing
+
+The project includes unit tests for core application logic, including:
+
+WHO growth calculations
+
+Growth engine logic
+
+Development and milestone logic
+
+Session defaults
+
+Multilingual child-admission voice parsing
+
+
+Run the test suite with:
+
 ./gradlew testDebugUnitTest --no-daemon
 
-# Expected Result: 12/12 passing tests across:
-# - DomainEnginesTest (WHO Growth Engine, Z-Scores, Milestone Engines, Session Defaults)
-# - ChildAdmissionVoiceParserTest (Multi-lingual Telugu/Hindi/English token extraction)
-```
 
 ---
 
-## 6. Build Instructions
+Running the Project
 
-### Prerequisites
-- Android Studio Ladybug (2024.2+) or Android SDK Platform 35
-- JDK 17+ (e.g., JetBrains Runtime `jbr`)
+Requirements
 
-### Generating Debug Build
-```bash
-# Clone the repository
+Android Studio Ladybug or newer
+
+Android SDK Platform 35
+
+JDK 17 or newer
+
+
+Clone the repository
+
 git clone https://github.com/nithyahasinialle-rgb/Balamitra.git
 cd Balamitra
 
-# Build Debug APK
+Build the application
+
 ./gradlew assembleDebug --no-daemon
-```
-The output APK is generated at:
-`app/build/outputs/apk/debug/app-debug.apk` and also placed at the project root as `Balamitra.apk`.
+
+The debug APK will be generated at:
+
+app/build/outputs/apk/debug/app-debug.apk
+
 
 ---
 
-## 7. Project Impact & Mission
+Our Design Approach
 
-Balamitra demonstrates how modern software engineering and empathetic AI can be directed toward high-impact public health challenges. By removing clerical friction, respecting low-resource operational constraints, and prioritizing compassionate human-to-human communication, Balamitra enables grassroots workers to do what matters most: ensure every child has the foundation for a healthy, thriving future.
+BALAMITRA was not designed by starting with an AI model and looking for somewhere to put it.
+
+We started with the worker.
+
+We visited an Anganwadi centre, spoke with the worker, understood the workflow, identified where information was getting lost or repeated, and then designed the system around those observations.
+
+That process influenced everything from the voice-first interaction to the longitudinal child profile and the worker-controlled recommendation loop.
+
+Our team works across AI/ML, embedded systems, IoT, hardware and software, with experience working on AI/ML and systems projects at IIT Bombay and IIIT Hyderabad.
+
+For us, the interesting part of BALAMITRA is the combination of design thinking and engineering.
+
+We ask two questions together:
+
+> Will this actually help the person using it?
+
+
+
+and
+
+> Can we build the technology well enough to make that possible?
+
+
+
+BALAMITRA is our attempt to answer both.
+
+
+---
+
+The Idea Behind BALAMITRA
+
+An Anganwadi worker sees hundreds of small pieces of information about a child over time.
+
+A meal missed.
+
+A new word learned.
+
+An activity that worked.
+
+A behaviour that changed.
+
+A measurement that moved.
+
+Individually, these may look like small observations.
+
+Together, they tell a story.
+
+BALAMITRA is built to help make that story easier to remember, connect and act on.
+
+> The worker knows the child.
+BALAMITRA remembers the journey.
+
+
+
+
+---
+
+Project Status
+
+BALAMITRA is an active prototype developed for the iQOO Hackathon 2026.
+
+The current version includes:
+
+Child records
+
+Voice-based observations
+
+Multilingual interaction
+
+Growth analysis
+
+Longitudinal child context
+
+Connect the Dots
+
+Personalized activities
+
+Material-aware recommendations
+
+Worker feedback
+
+Offline-first workflows
+
+Centre-level insights
+
+Structured exports
+
+
+
+---
+
+Team
+
+Built by a student team working across:
+
+AI/ML | Edge AI | Embedded Systems | IoT | Android | Hardware | Design Thinking
+
+We believe the best solutions happen when understanding the user and understanding the technology are treated as the same problem.
+
+
+---
+
+License
+
+This project is currently developed as a hackathon and research prototype.
