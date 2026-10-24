@@ -69,13 +69,19 @@ class MainActivity : ComponentActivity() {
             val state by viewModel.uiState.collectAsState()
             val strings = getStrings(state.currentLanguage)
 
-            val currentDensity = androidx.compose.ui.platform.LocalDensity.current
+            val baseDensity = androidx.compose.ui.platform.LocalDensity.current
+            // Cap text scaling between 1.0f and 1.15f to preserve clean, unclipped MVP card layouts
+            val effectiveScale = when {
+                state.textScale > 1.25f -> 1.15f
+                state.textScale > 1.05f -> 1.08f
+                else -> 1.0f
+            }
 
             CompositionLocalProvider(
                 LocalAppStrings provides strings,
                 androidx.compose.ui.platform.LocalDensity provides androidx.compose.ui.unit.Density(
-                    density = currentDensity.density,
-                    fontScale = currentDensity.fontScale * state.textScale
+                    density = baseDensity.density,
+                    fontScale = baseDensity.fontScale * effectiveScale
                 )
             ) {
                 BalamitraTheme {

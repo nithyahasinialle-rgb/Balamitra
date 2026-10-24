@@ -77,7 +77,7 @@ fun HeaderBar(
                 .statusBarsPadding()
                 .padding(horizontal = 16.dp, vertical = 12.dp)
         ) {
-            // Row 1: App Identity (Serif Header in Deep Black) & Accessibility Text Scaler + Language Selector
+            // Row 1: App Identity & Quick Actions
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -91,32 +91,37 @@ fun HeaderBar(
                         painter = painterResource(id = R.drawable.balamitra_logo),
                         contentDescription = "Balamitra Logo",
                         modifier = Modifier
-                            .size(42.dp)
-                            .clip(RoundedCornerShape(10.dp))
+                            .size(38.dp)
+                            .clip(RoundedCornerShape(8.dp))
                     )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Column {
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Column(modifier = Modifier.fillMaxWidth()) {
                         Text(
                             text = s.appName,
                             fontFamily = FontFamily.Serif,
                             fontWeight = FontWeight.Bold,
-                            fontSize = 22.sp,
+                            fontSize = if (s.appName.length > 9) 16.sp else 19.sp,
                             color = DeepBlack,
-                            letterSpacing = 0.5.sp
+                            letterSpacing = 0.2.sp,
+                            maxLines = 1,
+                            softWrap = false,
+                            overflow = TextOverflow.Ellipsis
                         )
-                        Spacer(modifier = Modifier.height(2.dp))
+                        Spacer(modifier = Modifier.height(1.dp))
                         Text(
                             text = s.tagline,
                             fontFamily = FontFamily.SansSerif,
                             fontWeight = FontWeight.Medium,
                             color = Color(0xFF2C3E50),
-                            fontSize = 11.5.sp,
-                            lineHeight = 15.sp
+                            fontSize = 10.5.sp,
+                            lineHeight = 13.5.sp,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis
                         )
                     }
                 }
 
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(6.dp))
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     // Accessibility Font Scaling Button (Aa)

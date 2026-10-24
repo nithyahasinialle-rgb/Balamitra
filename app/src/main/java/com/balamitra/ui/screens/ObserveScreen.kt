@@ -553,7 +553,10 @@ fun ObserveScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.weight(1f)
+                    ) {
                         Icon(
                             imageVector = Icons.Default.Edit,
                             contentDescription = null,
@@ -563,23 +566,34 @@ fun ObserveScreen(
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
                             text = when (state.currentLanguage) {
-                                Language.TELUGU -> "పరిశీలన నమోదు చేయండి లేదా టైప్ చేయండి"
-                                Language.HINDI -> "अवलोकन नोट टाइप करें या संपादित करें"
-                                Language.ENGLISH -> "Type or Edit Observation Note"
+                                Language.TELUGU -> "పరిశీలన నమోదు / టైప్ చేయండి"
+                                Language.HINDI -> "अवलोकन नोट टाइप / संपादित करें"
+                                Language.ENGLISH -> "Type / Edit Observation Note"
                             },
                             fontWeight = FontWeight.Bold,
-                            fontSize = 12.sp,
-                            color = DeepBlack
+                            fontSize = 11.5.sp,
+                            color = DeepBlack,
+                            maxLines = 1,
+                            overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                         )
                     }
+
+                    Spacer(modifier = Modifier.width(6.dp))
 
                     Box(
                         modifier = Modifier
                             .clip(RoundedCornerShape(6.dp))
                             .background(Color(0xFFE8F8F5))
-                            .padding(horizontal = 6.dp, vertical = 2.dp)
+                            .padding(horizontal = 8.dp, vertical = 3.dp)
                     ) {
-                        Text("100% Offline", fontSize = 10.sp, color = Color(0xFF117A65), fontWeight = FontWeight.Bold)
+                        Text(
+                            text = "100% Offline",
+                            fontSize = 10.sp,
+                            color = Color(0xFF117A65),
+                            fontWeight = FontWeight.Bold,
+                            maxLines = 1,
+                            softWrap = false
+                        )
                     }
                 }
 

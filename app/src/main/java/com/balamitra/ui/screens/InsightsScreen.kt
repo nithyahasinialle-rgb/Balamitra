@@ -151,48 +151,68 @@ fun InsightsScreen(
                 border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFF86EFAC)),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Column(modifier = Modifier.padding(14.dp)) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 14.dp, vertical = 12.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.weight(1f)
                     ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Box(
-                                modifier = Modifier
-                                    .size(32.dp)
-                                    .clip(androidx.compose.foundation.shape.CircleShape)
-                                    .background(Color(0xFF22C55E)),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Icon(Icons.Default.CloudOff, contentDescription = null, tint = Color.White, modifier = Modifier.size(18.dp))
-                            }
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Column {
-                                Text(
-                                    text = "Mobile Data Usage: 0.00 KB",
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 13.sp,
-                                    color = Color(0xFF14532D)
-                                )
-                                Text(
-                                    text = "100% On-Device AI • Saved ~44.9 MB",
-                                    fontSize = 11.sp,
-                                    color = Color(0xFF166534)
-                                )
-                            }
-                        }
-
-                        Button(
-                            onClick = { viewModel.openDataMonitorDialog() },
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = BrandYellowPrimary,
-                                contentColor = DeepBlack
-                            ),
-                            shape = RoundedCornerShape(8.dp)
+                        Box(
+                            modifier = Modifier
+                                .size(34.dp)
+                                .clip(androidx.compose.foundation.shape.CircleShape)
+                                .background(Color(0xFF22C55E)),
+                            contentAlignment = Alignment.Center
                         ) {
-                            Text("Inspect", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            Icon(Icons.Default.CloudOff, contentDescription = null, tint = Color.White, modifier = Modifier.size(18.dp))
                         }
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Column {
+                            Text(
+                                text = "Mobile Data Usage: 0.00 KB",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 12.5.sp,
+                                color = Color(0xFF14532D),
+                                maxLines = 1,
+                                overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
+                            )
+                            Text(
+                                text = "100% On-Device AI • Saved ~44.9 MB",
+                                fontSize = 10.5.sp,
+                                color = Color(0xFF166534),
+                                maxLines = 1,
+                                overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.width(8.dp))
+
+                    Button(
+                        onClick = { viewModel.openDataMonitorDialog() },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = BrandYellowPrimary,
+                            contentColor = DeepBlack
+                        ),
+                        shape = RoundedCornerShape(8.dp),
+                        contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 14.dp, vertical = 8.dp)
+                    ) {
+                        Text(
+                            text = when (state.currentLanguage) {
+                                com.balamitra.core.model.Language.TELUGU -> "వివరాలు"
+                                com.balamitra.core.model.Language.HINDI -> "जांचें"
+                                com.balamitra.core.model.Language.ENGLISH -> "Inspect"
+                            },
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold,
+                            maxLines = 1,
+                            softWrap = false
+                        )
                     }
                 }
             }
