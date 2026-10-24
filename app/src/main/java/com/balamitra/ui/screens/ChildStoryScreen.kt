@@ -144,6 +144,43 @@ fun ChildStoryScreen(
                                     )
                                 }
                             }
+                            Spacer(modifier = Modifier.height(3.dp))
+                            val sdfAdmission = remember { SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH) }
+                            val admissionText = when (state.currentLanguage) {
+                                Language.TELUGU -> "అంగన్‌వాడీ చేరిన తేదీ: ${sdfAdmission.format(Date(child.createdAtEpochMs))}"
+                                Language.HINDI -> "आंगनवाड़ी प्रवेश तिथि: ${sdfAdmission.format(Date(child.createdAtEpochMs))}"
+                                Language.ENGLISH -> "Anganwadi Admission: ${sdfAdmission.format(Date(child.createdAtEpochMs))}"
+                            }
+                            Text(
+                                text = "📅 $admissionText",
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                color = Color(0xFF2980B9)
+                            )
+                            val nutritionEntitlement = if (child.ageYears < 3) {
+                                when (state.currentLanguage) {
+                                    Language.TELUGU -> "పోషకాహారం: టేక్ హోమ్ రేషన్ (THR - బాలామృతం)"
+                                    Language.HINDI -> "पोषण: टेक होम राशन (THR - बालमृतम)"
+                                    Language.ENGLISH -> "Nutrition: Take Home Ration (THR - Balamrutham)"
+                                }
+                            } else {
+                                when (state.currentLanguage) {
+                                    Language.TELUGU -> "పోషకాహారం: వేడి వండిన భోజనం (HCM - అన్నం, పప్పు, గుడ్డు)"
+                                    Language.HINDI -> "पोषण: गर्म पका भोजन (HCM - चावल, दाल, अंडा)"
+                                    Language.ENGLISH -> "Nutrition: Hot Cooked Meal (HCM - Rice, Dal, Egg)"
+                                }
+                            }
+                            Text(
+                                text = "🍲 $nutritionEntitlement",
+                                fontSize = 10.5.sp,
+                                fontWeight = FontWeight.Medium,
+                                color = Color(0xFF1E8449)
+                            )
+                            Text(
+                                text = "🆔 ${s.enrollmentId}: ${child.enrollmentId} • ${child.villageWard} • ఆధార్: •••• ${child.aadhaarLast4}",
+                                fontSize = 10.sp,
+                                color = Color(0xFF7F8C8D)
+                            )
                         }
                     }
 

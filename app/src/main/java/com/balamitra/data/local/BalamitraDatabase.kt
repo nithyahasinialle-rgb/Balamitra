@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
         MaterialInventoryEntity::class,
         WorkerOverrideLogEntity::class
     ],
-    version = 4,
+    version = 5,
     exportSchema = false
 )
 abstract class BalamitraDatabase : RoomDatabase() {

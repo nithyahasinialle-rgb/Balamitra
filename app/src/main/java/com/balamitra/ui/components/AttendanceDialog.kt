@@ -216,14 +216,23 @@ fun AttendanceDialog(
                                     }
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Column {
+                                        Row(verticalAlignment = Alignment.CenterVertically) {
+                                            Text(
+                                                text = "${child.name} (${child.ageYears} yrs)",
+                                                fontSize = 12.5.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                color = DeepBlack
+                                            )
+                                            Spacer(modifier = Modifier.width(4.dp))
+                                            Text(
+                                                text = if (child.ageYears < 3) "• 📦 THR" else "• 🍲 HCM",
+                                                fontSize = 10.sp,
+                                                fontWeight = FontWeight.SemiBold,
+                                                color = if (child.ageYears < 3) Color(0xFF2980B9) else Color(0xFF27AE60)
+                                            )
+                                        }
                                         Text(
-                                            text = "${child.name} (${child.ageYears} yrs)",
-                                            fontSize = 12.5.sp,
-                                            fontWeight = FontWeight.Bold,
-                                            color = DeepBlack
-                                        )
-                                        Text(
-                                            text = "${s.fatherName}: ${child.fatherName}",
+                                            text = "${s.fatherName}: ${child.fatherName} • ${child.villageWard}",
                                             fontSize = 10.sp,
                                             color = Color(0xFF7F8C8D)
                                         )
