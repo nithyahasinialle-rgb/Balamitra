@@ -230,6 +230,114 @@ object ActivityLocalization {
                 )
             }
 
+            "act_visual_gesture_cards" -> when (language) {
+                Language.TELUGU -> LocalizedActivityContent(
+                    title = "చిత్రపటాలు & సంజ్ఞల ఆట (Visual Flashcards & Gestures)",
+                    requiredMaterials = listOf("బొమ్మల కార్డులు (నీరు, అన్నం, బంతి)", "చేతులు"),
+                    steps = listOf(
+                        "కార్డును పిల్లల కంటి చూపు ఎత్తులో చూపించి సంబంధిత సంజ్ఞ చేయండి",
+                        "కార్డును చూపిస్తూ నెమ్మదిగా శబ్దాన్ని పలకండి ('పా-లు', 'అ-న్నం')",
+                        "పిల్లవాడు కంటితో లేదా చేతితో చూపించినప్పుడు మెచ్చుకోండి; మాట్లాడాలని బలవంతం చేయవద్దు"
+                    ),
+                    whatToObserve = "పిల్లవాడు కంటి చూపు, వేలితో చూపించడం లేదా సంజ్ఞల ద్వారా ప్రతిస్పందిస్తున్నాడా?",
+                    parentExplanation = "చిత్రపటాలు, సంజ్ఞల ద్వారా నేర్పించడం మాటలు ఆలస్యమైన పిల్లల్లో కమ్యూనికేషన్‌ను పెంచుతుంది. ఇంట్లో వస్తువులను చేత్తో చూపిస్తూ పేరు చెప్పండి."
+                )
+                Language.HINDI -> LocalizedActivityContent(
+                    title = "चित्र कार्ड और सांकेतिक संवाद (Visual Gesture Cards)",
+                    requiredMaterials = listOf("चित्र कार्ड (पानी, रोटी, गेंद)", "हाथ"),
+                    steps = listOf(
+                        "कार्ड को बच्चे की आंखों के सामने रखें और इशारा करें",
+                        "कार्ड दिखाते हुए धीरे से शब्द बोलें ('दू-ध', 'पा-नी')",
+                        "इशारे या नज़र से बताने पर बच्चे की प्रशंसा करें; बोलने का दबाव न डालें"
+                    ),
+                    whatToObserve = "क्या बच्चा आंखों या उंगली के इशारे से अपनी बात व्यक्त करता है?",
+                    parentExplanation = "चित्रों और इशारों से बोलने में देरी वाले बच्चों का आत्मविश्वास बढ़ता है।"
+                )
+                Language.ENGLISH -> LocalizedActivityContent(
+                    title = "Visual Flashcards & Gestural Naming",
+                    requiredMaterials = listOf("Picture cards (water, milk, ball)", "Hands"),
+                    steps = listOf(
+                        "Hold card at eye level and demonstrate the action gesture",
+                        "Point to card and vocalize sound slowly ('Waa-ter', 'M-ilk')",
+                        "Praise gesture or eye point without pressuring verbal speech"
+                    ),
+                    whatToObserve = "Does the child initiate communication using eye contact, pointing, or gestural signing?",
+                    parentExplanation = "Visual card pairing bridges speech delay by connecting real objects with gestures before full verbal fluency."
+                )
+            }
+
+            "act_seated_clay_press" -> when (language) {
+                Language.TELUGU -> LocalizedActivityContent(
+                    title = "కూర్చుని పిండిని ఒత్తే ఆట (Seated Clay Press)",
+                    requiredMaterials = listOf("గోధుమ పిండి ముద్ద / మెత్తటి మట్టి", "చాప"),
+                    steps = listOf(
+                        "పిల్లవాడిని చాపపై సౌకర్యంగా కూర్చోబెట్టండి",
+                        "పిండి ముద్దను చేతికి అందుబాటులో ఉంచండి",
+                        "వేళ్లతో పిండిని ఒత్తడం, చిన్న చిన్న ఉండలు చేయడం చూపించండి"
+                    ),
+                    whatToObserve = "పిల్లవాడు నిలబడకుండా కూర్చునే అరచేతి పట్టు మరియు వేళ్ల కదలికలను ఉపయోగించగలుగుతున్నాడా?",
+                    parentExplanation = "కూర్చుని పిండిని ఒత్తడం వల్ల నడకలో సమస్యలున్న పిల్లలకు శారీరక శ్రమ లేకుండా చేతుల పట్టు బలపడుతుంది."
+                )
+                Language.HINDI -> LocalizedActivityContent(
+                    title = "बैठकर मिट्टी/आटा दबाने का खेल (Seated Clay Press)",
+                    requiredMaterials = listOf("मुलायम आटा या चिकनी मिट्टी", "चटाई"),
+                    steps = listOf(
+                        "बच्चे को आरामदायक मुद्रा में बैठाएं",
+                        "आटे की लोई को हाथों की पहुंच में रखें",
+                        "उंगलियों से दबाने और छोटी गोलियां बनाने के लिए प्रेरित करें"
+                    ),
+                    whatToObserve = "क्या बच्चा बिना खड़े हुए हाथों की पकड़ और उंगलियों का सही उपयोग कर पाता है?",
+                    parentExplanation = "बैठकर आटा दबाने से चलने में असमर्थ बच्चों के हाथों की ताकत सुरक्षित रूप से बढ़ती है।"
+                )
+                Language.ENGLISH -> LocalizedActivityContent(
+                    title = "Seated Clay Press & Finger Rolling",
+                    requiredMaterials = listOf("Soft wheat dough or natural clay", "Mat"),
+                    steps = listOf(
+                        "Seat child comfortably on supported mat",
+                        "Place soft dough ball within arm's reach",
+                        "Guide fingers to press, pinch, and roll small beads"
+                    ),
+                    whatToObserve = "Palmar grip pressure and hand dexterity without requiring standing balance.",
+                    parentExplanation = "Seated dough pressing builds hand strength for children with mobility challenges without physical strain."
+                )
+            }
+
+            "act_tactile_texture_mat" -> when (language) {
+                Language.TELUGU -> LocalizedActivityContent(
+                    title = "ప్రశాంత స్పర్శ మార్గం (Calming Tactile Texture Path)",
+                    requiredMaterials = listOf("మెత్తటి గుడ్డ, గోనె సంచి ముక్క, మృదువైన రాళ్లు, నిశ్శబ్ద మూల"),
+                    steps = listOf(
+                        "ఎక్కువ శబ్దాలు లేని నిశ్శబ్ద మూలలో కూర్చోబెట్టండి",
+                        "మృదువైన గుడ్డ, గరుకైన గోనె, చల్లని రాళ్లను బిడ్డ తన ఇష్టానుసారం తాకనివ్వండి",
+                        "ఎలాంటి తొందరపాటు లేకుండా ప్రశాంత వాతావరణం కల్పించండి"
+                    ),
+                    whatToObserve = "బిడ్డ ఆందోళన తగ్గి ప్రశాంతంగా స్పర్శను అనుభవిస్తున్నాడా?",
+                    parentExplanation = "వివిధ ఉపరితలాలను తాకడం ఎక్కువ శబ్దాలు, రద్దీకి సున్నితంగా ఉండే పిల్లలను ప్రశాంతపరుస్తుంది."
+                )
+                Language.HINDI -> LocalizedActivityContent(
+                    title = "शांत संवेदी स्पर्श मार्ग (Calming Tactile Texture Path)",
+                    requiredMaterials = listOf("मखमली कपड़ा, जूट, चिकने पत्थर, शांत कोना"),
+                    steps = listOf(
+                        "बच्चे को कक्षा के शांत कोने में बैठाएं",
+                        "बच्चे को अलग-अलग सतहों (मुलायम, खुरदरी, ठंडी) को अपनी गति से छूने दें",
+                        "शांत और धीमे स्वर में बात करें"
+                    ),
+                    whatToObserve = "क्या बच्चे का संवेदी तनाव कम होकर एकाग्रता बढ़ती है?",
+                    parentExplanation = "अलग-अलग सतहों को छूने से संवेदी रूप से संवेदनशील बच्चे शांत और सुरक्षित महसूस करते हैं।"
+                )
+                Language.ENGLISH -> LocalizedActivityContent(
+                    title = "Calming Tactile Texture Path",
+                    requiredMaterials = listOf("Cloth pieces, dry pulses, smooth stones, quiet corner mat"),
+                    steps = listOf(
+                        "Guide child to quiet corner with low ambient noise",
+                        "Let child touch smooth velvet, rough jute, cool stones at own pace",
+                        "Provide unhurried reassuring presence"
+                    ),
+                    whatToObserve = "Reduction in sensory agitation and steady tactile exploration.",
+                    parentExplanation = "Texture exploration calms sensory-sensitive and neurodivergent children who feel overwhelmed by loud classroom noises."
+                )
+            }
+
             else -> when (language) {
                 Language.TELUGU -> LocalizedActivityContent(
                     title = "వికాస ఆట (Developmental Activity)",

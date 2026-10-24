@@ -35,12 +35,20 @@ object PersonalizedActivityEngine {
         val overriddenIds = overrideLogs.map { it.suggestedActivityId }.toSet()
         val candidatePool = ageAppropriate.filter { it.id !in overriddenIds }.ifEmpty { ageAppropriate }
 
-        // Find best match according to child age & needs
-        val selectedActivity = when {
-            child.ageYears <= 1 -> candidatePool.find { it.id == "act_rattle_rhythm" || it.id == "act_roll_soft_ball" } ?: candidatePool.first()
-            child.ageYears == 2 -> candidatePool.find { it.id == "act_animal_sounds" || it.id == "act_object_sorting" } ?: candidatePool.first()
-            child.ageYears in 3..4 -> candidatePool.find { it.id == "act_color_cups" || it.id == "act_thread_beads" } ?: candidatePool.first()
-            else -> candidatePool.find { it.id == "act_letter_tracing" || it.id == "act_rope_jump_count" } ?: candidatePool.first()
+        // Find best match according to child age & needs, with priority for specialized adaptive pathways
+        val selectedActivity = when (child.specialNeedsType) {
+            "SPEECH_HEARING" -> candidatePool.find { it.id == "act_visual_gesture_cards" }
+                ?: candidatePool.find { it.id == "act_color_cups" } ?: candidatePool.first()
+            "LOCOMOTOR" -> candidatePool.find { it.id == "act_seated_clay_press" }
+                ?: candidatePool.find { it.id == "act_thread_beads" } ?: candidatePool.first()
+            "NEURODIVERGENT" -> candidatePool.find { it.id == "act_tactile_texture_mat" }
+                ?: candidatePool.find { it.id == "act_sand_shapes" } ?: candidatePool.first()
+            else -> when {
+                child.ageYears <= 1 -> candidatePool.find { it.id == "act_rattle_rhythm" || it.id == "act_roll_soft_ball" } ?: candidatePool.first()
+                child.ageYears == 2 -> candidatePool.find { it.id == "act_animal_sounds" || it.id == "act_object_sorting" } ?: candidatePool.first()
+                child.ageYears in 3..4 -> candidatePool.find { it.id == "act_color_cups" || it.id == "act_thread_beads" } ?: candidatePool.first()
+                else -> candidatePool.find { it.id == "act_letter_tracing" || it.id == "act_rope_jump_count" } ?: candidatePool.first()
+            }
         }
 
         // Get localized activity strings
@@ -54,6 +62,9 @@ object PersonalizedActivityEngine {
         when (language) {
             Language.TELUGU -> {
                 evidencePoints.add("వయస్సు తగిన స్థాయి: ${child.ageYears} సంవత్సరాల పిల్లల వికాస మైలురాళ్లకు సరిగ్గా సరిపోతుంది.")
+                if (child.specialNeedsTitle != null) {
+                    evidencePoints.add("సమ్మిళిత మద్దతు: ${child.specialNeedsTitle} కోసం ప్రత్యేకంగా స్వీకరించబడిన కార్యకలాపం.")
+                }
                 if (latestDev != null) {
                     evidencePoints.add("మునుపటి పరిశీలన: '${latestDev.observationText}'")
                 }
@@ -61,6 +72,9 @@ object PersonalizedActivityEngine {
             }
             Language.HINDI -> {
                 evidencePoints.add("आयु उपयुक्त: यह ${child.ageYears} वर्ष के बच्चे के विकास के लिए पूरी तरह उपयुक्त है।")
+                if (child.specialNeedsTitle != null) {
+                    evidencePoints.add("समावेशी सहायता: ${child.specialNeedsTitle} के अनुसार विशेष रूप से अनुकूलित खेल।")
+                }
                 if (latestDev != null) {
                     evidencePoints.add("पिछला अवलोकन: '${latestDev.observationText}'")
                 }
@@ -68,6 +82,9 @@ object PersonalizedActivityEngine {
             }
             Language.ENGLISH -> {
                 evidencePoints.add("Age Appropriate: Tailored for ${child.ageYears}-year-old developmental milestones.")
+                if (child.specialNeedsTitle != null) {
+                    evidencePoints.add("Inclusive Pathway: Customized for ${child.specialNeedsTitle}.")
+                }
                 if (latestDev != null) {
                     evidencePoints.add("Observation: '${latestDev.observationText}'")
                 }

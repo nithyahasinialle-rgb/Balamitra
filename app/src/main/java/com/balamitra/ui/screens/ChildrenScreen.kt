@@ -205,6 +205,22 @@ fun ChildrenScreen(
                                     )
                                 }
                             }
+                            if (!child.specialNeedsTitle.isNullOrBlank()) {
+                                Spacer(modifier = Modifier.height(3.dp))
+                                Box(
+                                    modifier = Modifier
+                                        .clip(RoundedCornerShape(6.dp))
+                                        .background(Color(0xFFE8F8F5))
+                                        .padding(horizontal = 6.dp, vertical = 2.dp)
+                                ) {
+                                    Text(
+                                        text = "🌟 ${child.specialNeedsTitle}",
+                                        fontSize = 10.sp,
+                                        fontWeight = FontWeight.SemiBold,
+                                        color = Color(0xFF117A65)
+                                    )
+                                }
+                            }
                             Spacer(modifier = Modifier.height(2.dp))
                             Text(
                                 text = "${s.fatherName}: ${child.fatherName} • ${child.villageWard}",

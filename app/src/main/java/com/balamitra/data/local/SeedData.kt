@@ -139,13 +139,16 @@ object SeedData {
             ageYears = 4,
             gender = "M",
             preferredLanguage = "te",
-            baselineNotes = "52 months old. Enjoys paper folding (origami boat), role playing teacher, narrates 3-line story.",
+            baselineNotes = "52 months old. Hearing & Speech sensitivity. Responds strongly to visual flashcards and tactile signals; speaks in single words with delayed auditory imitation.",
             fatherName = "Sri P. Satyam (Mason)",
             motherName = "Smt. P. Anasuya",
             enrollmentId = "ICDS-TG-HYD-2022-010",
             villageWard = "Bachupally Ward-4",
             aadhaarLast4 = "3391",
-            isDemoChild = true
+            isDemoChild = true,
+            specialNeedsType = "SPEECH_HEARING",
+            specialNeedsTitle = "Speech Delay & Hearing Support",
+            adaptiveDietPlan = "Soft mastication diet: mashed khichdi with ghee, boiled lentils soup, smooth banana puree to assist oral-motor tongue mobility."
         ),
         ChildEntity(
             id = "child_radha",
@@ -153,13 +156,16 @@ object SeedData {
             ageYears = 4,
             gender = "F",
             preferredLanguage = "hi",
-            baselineNotes = "54 months old. Buttons shirt with large buttons, draws human figures with head and limbs.",
+            baselineNotes = "54 months old. Locomotor CP support. Mild left-side motor stiffness; needs seated sensory play and low-fatigue activities.",
             fatherName = "Sri E. Gopal (Security Guard)",
             motherName = "Smt. E. Pushpa",
             enrollmentId = "ICDS-TG-HYD-2022-011",
             villageWard = "Bachupally Ward-3",
             aadhaarLast4 = "7128",
-            isDemoChild = true
+            isDemoChild = true,
+            specialNeedsType = "LOCOMOTOR",
+            specialNeedsTitle = "Locomotor & Seated Motor Support",
+            adaptiveDietPlan = "High-calcium & iron fortified: ragi porridge (finger millet malt), drumstick leaves (moringa) dal, boiled egg for bone-muscle strength."
         ),
         ChildEntity(
             id = "child_mahesh",
@@ -167,13 +173,16 @@ object SeedData {
             ageYears = 5,
             gender = "M",
             preferredLanguage = "te",
-            baselineNotes = "60 months old. Traces Telugu and English letters on slate, cuts paper along straight line.",
+            baselineNotes = "60 months old. Neurodivergent / Sensory processing. High sensory seeking, gets overwhelmed by loud group noises; excels in repetitive tactile rhythm games.",
             fatherName = "Sri K. Sailu (Mechanic)",
             motherName = "Smt. K. Sujatha",
             enrollmentId = "ICDS-TG-HYD-2021-012",
             villageWard = "Bachupally Ward-1",
             aadhaarLast4 = "5092",
-            isDemoChild = true
+            isDemoChild = true,
+            specialNeedsType = "NEURODIVERGENT",
+            specialNeedsTitle = "Sensory & Neurodivergent Focus",
+            adaptiveDietPlan = "Calming balanced nutrition: roasted chana, warm milk with turmeric, jaggery-sesame laddu; avoidance of artificial sugar spikes."
         ),
         ChildEntity(
             id = "child_anji",
@@ -432,6 +441,50 @@ object SeedData {
             parentExplanationEn = "Hopping while counting builds core physical balance and early math numeracy skills.",
             parentExplanationHi = "कूदते हुए गिनती करना शारीरिक संतुलन और गणित की बुनियादी समझ को बढ़ाता है।",
             parentExplanationTe = "గెంతుతూ లెక్కించడం వల్ల శరీర సమతుల్యత మరియు ప్రాథమిక గణిత నైపుణ్యాలు అలవడతాయి."
+        ),
+
+        // Specialized Inclusive & Disability-Adaptive Activities
+        ActivityEntity(
+            id = "act_visual_gesture_cards",
+            title = "Visual Flashcards & Gestural Naming",
+            domain = DevelopmentDomain.LANGUAGE_COGNITIVE,
+            minAgeYears = 3,
+            maxAgeYears = 6,
+            durationMinutes = 5,
+            requiredMaterialsList = "Illustrated picture cards (water, food, ball), Hands",
+            stepsList = "Hold card at eye level and sign the action|Point to card and voice sound slowly ('Mmm-milk')|Praise gesture or eye point without pressuring verbal output",
+            whatToObserve = "Does the child initiate communication using eye contact, pointing, or gestural signing?",
+            parentExplanationEn = "Visual card pairing bridges speech delay by connecting real objects with gestures before full verbal fluency.",
+            parentExplanationHi = "चित्र कार्ड और इशारों का उपयोग बोलने में देरी वाले बच्चों को आत्मविश्वास से संवाद करना सिखाता है।",
+            parentExplanationTe = "చిత్రపటాలు మరియు సంజ్ఞల ద్వారా మాట్లాడటం వల్ల మాటలు ఆలస్యమైన పిల్లలలో భావవ్యక్తీకరణ వేగంగా మెరుగుపడుతుంది."
+        ),
+        ActivityEntity(
+            id = "act_seated_clay_press",
+            title = "Seated Clay Press & Finger Rolling",
+            domain = DevelopmentDomain.MOTOR,
+            minAgeYears = 3,
+            maxAgeYears = 6,
+            durationMinutes = 6,
+            requiredMaterialsList = "Soft natural clay or wheat dough (Atta), Mat",
+            stepsList = "Seat child comfortably on supported mat|Place soft dough ball within arm's reach|Guide fingers to press, pinch, and roll small beads",
+            whatToObserve = "Palmar grip pressure and sensory tolerance without requiring standing balance.",
+            parentExplanationEn = "Seated dough pressing builds hand strength for children with mobility challenges without physical strain.",
+            parentExplanationHi = "बैठकर आटे या मिट्टी को दबाने से बिना थके हाथों की पकड़ मजबूत होती है।",
+            parentExplanationTe = "కూర్చుని మట్టి లేదా పిండిని ఒత్తడం వల్ల నడకలో సమస్య ఉన్న పిల్లలకు చేతుల నైపుణ్యం పెరుగుతుంది."
+        ),
+        ActivityEntity(
+            id = "act_tactile_texture_mat",
+            title = "Calming Tactile Texture Path",
+            domain = DevelopmentDomain.SELF_CARE,
+            minAgeYears = 3,
+            maxAgeYears = 6,
+            durationMinutes = 5,
+            requiredMaterialsList = "Cloth pieces, dry pulses, smooth stones, quiet corner mat",
+            stepsList = "Guide child to quiet corner with low lighting|Let child touch smooth velvet, rough jute, cool stones at own pace|Provide unhurried deep pressure touch",
+            whatToObserve = "Reduction in sensory agitation and steady tactile exploration.",
+            parentExplanationEn = "Texture mats help calm sensory-sensitive and neurodivergent children who feel overwhelmed by loud classroom noises.",
+            parentExplanationHi = "अलग-अलग सतहों को छूने से संवेदी रूप से संवेदनशील बच्चे शांत और एकाग्र होते हैं।",
+            parentExplanationTe = "వివిధ ఉపరితలాలను తాకడం వల్ల ఎక్కువ శబ్దాలకు ఆందోళన చెందే పిల్లలు ప్రశాంతంగా ఉంటారు."
         )
     )
 

@@ -24,6 +24,9 @@ data class ChildEntity(
     val villageWard: String = "Bachupally Ward-1",
     val aadhaarLast4: String = "4819",
     val isDemoChild: Boolean = false,
+    val specialNeedsType: String? = null, // e.g. "HEARING_SPEECH", "LOCOMOTOR", "VISUAL", "NEURODIVERGENT"
+    val specialNeedsTitle: String? = null,
+    val adaptiveDietPlan: String? = null,
     val createdAtEpochMs: Long = System.currentTimeMillis()
 )
 

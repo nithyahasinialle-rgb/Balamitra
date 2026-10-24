@@ -524,7 +524,7 @@ class BalamitraViewModel(private val repository: ChildRepository) : ViewModel() 
     }
 
     fun setEvaluatorTourStep(step: Int) {
-        _uiState.update { it.copy(evaluatorTourStep = step.coerceIn(1, 5)) }
+        _uiState.update { it.copy(evaluatorTourStep = step.coerceIn(1, 6)) }
     }
 
     fun setPoshanCsvDialogOpen(open: Boolean) {

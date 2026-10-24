@@ -254,6 +254,43 @@ fun EvaluatorTourDialog(
                 it.setPoshanCsvDialogOpen(true)
                 it.setEvaluatorTourOpen(false)
             }
+        ),
+        TourStepData(
+            stepNumber = 6,
+            title = { l ->
+                when (l) {
+                    com.balamitra.core.model.Language.TELUGU -> "సమ్మిళిత బాలల వికాసం & స్పీచ్ థెరపీ"
+                    com.balamitra.core.model.Language.HINDI -> "समावेशी बाल विकास एवं स्पीच थेरेपी"
+                    com.balamitra.core.model.Language.ENGLISH -> "Inclusive ECD & Speech Therapy Screener"
+                }
+            },
+            badge = { l ->
+                when (l) {
+                    com.balamitra.core.model.Language.TELUGU -> "RBSK / DEIC ముందస్తు గుర్తింపు & ఆహార విధానాలు"
+                    com.balamitra.core.model.Language.HINDI -> "RBSK / DEIC प्रोटोकॉल व अनुकूली पोषण"
+                    com.balamitra.core.model.Language.ENGLISH -> "RBSK/DEIC Protocols & Adaptive Diets"
+                }
+            },
+            description = { l ->
+                when (l) {
+                    com.balamitra.core.model.Language.TELUGU -> "దివ్యాంగ పిల్లల (స్పీచ్ ఆలస్యం, లోకోమోటర్, సెన్సరీ) అవసరాలకు తగిన ప్రత్యేక ఆటలు, నమలడానికి వీలైన అనుకూల ఆహార ప్రణాళికలు మరియు స్పీచ్ థెరపీ అవసరమయ్యే హెచ్చరిక సంకేతాలను అందిస్తుంది."
+                    com.balamitra.core.model.Language.HINDI -> "विशेष आवश्यकता वाले बच्चों (स्पीच डिले, लोकोमोटर, संवेदी) के लिए अनुकूलित गतिविधियां, सुपाच्य आहार योजनाएं और स्पीच थेरेपी रेफरल के आधिकारिक दिशा-निर्देश।"
+                    com.balamitra.core.model.Language.ENGLISH -> "Tailored ECD activities for disabled children (speech delay, locomotor, neurodivergent), adaptive feeding patterns (oral-motor mastication, calcium-dense), and an official Speech Therapy early screener."
+                }
+            },
+            icon = Icons.Default.ChildCare,
+            accentColor = Color(0xFFE67E22),
+            liveActionText = { l ->
+                when (l) {
+                    com.balamitra.core.model.Language.TELUGU -> "సమ్మిళిత పిల్లల ప్రొఫైల్‌ను చూడండి"
+                    com.balamitra.core.model.Language.HINDI -> "समावेशी बच्चों की प्रोफ़ाइल देखें"
+                    com.balamitra.core.model.Language.ENGLISH -> "View Inclusive Children Roster"
+                }
+            },
+            onLiveAction = {
+                it.setActiveTab(AppTab.CHILDREN)
+                it.setEvaluatorTourOpen(false)
+            }
         )
     )
 
@@ -265,9 +302,9 @@ fun EvaluatorTourDialog(
         com.balamitra.core.model.Language.ENGLISH -> "Evaluator Tour Mode"
     }
     val stepProgressText = when (lang) {
-        com.balamitra.core.model.Language.TELUGU -> "దశ ${currentStep.stepNumber} / 5"
-        com.balamitra.core.model.Language.HINDI -> "चरण ${currentStep.stepNumber} / 5"
-        com.balamitra.core.model.Language.ENGLISH -> "Step ${currentStep.stepNumber} of 5"
+        com.balamitra.core.model.Language.TELUGU -> "దశ ${currentStep.stepNumber} / ${steps.size}"
+        com.balamitra.core.model.Language.HINDI -> "चरण ${currentStep.stepNumber} / ${steps.size}"
+        com.balamitra.core.model.Language.ENGLISH -> "Step ${currentStep.stepNumber} of ${steps.size}"
     }
 
     AlertDialog(

@@ -37,6 +37,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -49,6 +53,7 @@ import com.balamitra.core.model.GrowthStatus
 import com.balamitra.core.model.Language
 import com.balamitra.core.model.OverrideReason
 import com.balamitra.data.local.ChildEntity
+import com.balamitra.domain.speech.SpeechTherapyGuidelines
 import com.balamitra.ui.state.BalamitraUiState
 import com.balamitra.ui.state.BalamitraViewModel
 import com.balamitra.ui.theme.BrandYellowPrimary
@@ -67,6 +72,8 @@ fun ChildStoryScreen(
     val s = LocalAppStrings.current
     val rec = state.currentRecommendation
     val fullDateFormat = SimpleDateFormat("dd MMM yyyy, hh:mm a", Locale.getDefault())
+    var isSpeechGuidelinesExpanded by remember { mutableStateOf(child.specialNeedsType == "SPEECH_HEARING") }
+    var showAllSpeechMilestones by remember { mutableStateOf(false) }
 
     LazyColumn(
         modifier = modifier
@@ -120,6 +127,23 @@ fun ChildStoryScreen(
                                 fontSize = 11.sp,
                                 color = Color(0xFF7F8C8D)
                             )
+                            if (!child.specialNeedsTitle.isNullOrBlank()) {
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Box(
+                                    modifier = Modifier
+                                        .clip(RoundedCornerShape(6.dp))
+                                        .background(Color(0xFFE8F8F5))
+                                        .border(0.5.dp, Color(0xFFA3E4D7), RoundedCornerShape(6.dp))
+                                        .padding(horizontal = 6.dp, vertical = 2.dp)
+                                ) {
+                                    Text(
+                                        text = "🌟 ${child.specialNeedsTitle}",
+                                        fontSize = 10.sp,
+                                        fontWeight = FontWeight.SemiBold,
+                                        color = Color(0xFF117A65)
+                                    )
+                                }
+                            }
                         }
                     }
 
@@ -287,6 +311,336 @@ fun ChildStoryScreen(
                                     color = Color(0xFF78350F),
                                     lineHeight = 16.sp
                                 )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // ADAPTIVE FOOD PATTERN & SPECIALIZED NUTRITION (FOR CHILDREN WITH SPECIAL NEEDS)
+        if (!child.adaptiveDietPlan.isNullOrBlank()) {
+            item {
+                Card(
+                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    shape = RoundedCornerShape(16.dp),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(1.5.dp, Color(0xFF27AE60).copy(alpha = 0.6f), RoundedCornerShape(16.dp))
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text("🥣", fontSize = 16.sp)
+                                Spacer(modifier = Modifier.width(6.dp))
+                                Text(
+                                    text = when (state.currentLanguage) {
+                                        Language.TELUGU -> "ప్రత్యేక ఆహార ప్రణాళిక & పోషణ"
+                                        Language.HINDI -> "अनुकूली आहार योजना एवं विशेष पोषण"
+                                        Language.ENGLISH -> "Adaptive Food Pattern & Diet"
+                                    },
+                                    style = MaterialTheme.typography.labelLarge,
+                                    color = Color(0xFF1E8449),
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(6.dp))
+                                    .background(Color(0xFFD5F5E3))
+                                    .padding(horizontal = 6.dp, vertical = 2.dp)
+                            ) {
+                                Text(
+                                    text = when (state.currentLanguage) {
+                                        Language.TELUGU -> "సమ్మిళిత ఆహారం"
+                                        Language.HINDI -> "समावेशी पोषण"
+                                        Language.ENGLISH -> "Inclusive Diet"
+                                    },
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xFF196F3D)
+                                )
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = child.adaptiveDietPlan,
+                            fontSize = 12.sp,
+                            lineHeight = 17.sp,
+                            color = Color(0xFF2C3E50),
+                            fontWeight = FontWeight.Medium
+                        )
+                        Spacer(modifier = Modifier.height(6.dp))
+                        Text(
+                            text = when (state.currentLanguage) {
+                                Language.TELUGU -> "గమనిక: భోజనం అందించేటప్పుడు బిడ్డను నిటారుగా కూర్చోబెట్టండి. నమలడం, మింగడం సులభతరం చేసేందుకు ఆహారాన్ని మెత్తగా వండండి."
+                                Language.HINDI -> "मार्गदर्शन: भोजन कराते समय बच्चे को सीधा बैठाएं। चबाने और निगलने में आसानी के लिए भोजन को सुपाच्य रखें।"
+                                Language.ENGLISH -> "Guidance: Ensure upright seated posture during feeds. Maintain smooth mastication consistency to assist oral-motor swallow reflex."
+                            },
+                            fontSize = 10.5.sp,
+                            fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
+                            color = Color(0xFF7F8C8D)
+                        )
+                    }
+                }
+            }
+        }
+
+        // SPEECH & LANGUAGE THERAPY REFERRAL & SCREENING CARD
+        item {
+            val speechGuideline = SpeechTherapyGuidelines.getReferralGuidance(child.ageYears, state.currentLanguage)
+            Card(
+                colors = CardDefaults.cardColors(containerColor = Color.White),
+                shape = RoundedCornerShape(16.dp),
+                elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .border(1.dp, Color(0xFF2980B9).copy(alpha = 0.5f), RoundedCornerShape(16.dp))
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(32.dp)
+                                    .clip(CircleShape)
+                                    .background(Color(0xFFEBF5FB)),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text("🗣️", fontSize = 15.sp)
+                            }
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Column {
+                                Text(
+                                    text = when (state.currentLanguage) {
+                                        Language.TELUGU -> "స్పీచ్ థెరపీ & వికాస సూచనలు"
+                                        Language.HINDI -> "स्पीच थेरेपी एवं रेफरल गाइड"
+                                        Language.ENGLISH -> "Speech Therapy Referral Screener"
+                                    },
+                                    style = MaterialTheme.typography.titleSmall,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xFF1B4F72)
+                                )
+                                Text(
+                                    text = when (state.currentLanguage) {
+                                        Language.TELUGU -> "RBSK / DEIC ముందస్తు గుర్తింపు ప్రోటోకాల్"
+                                        Language.HINDI -> "RBSK / DEIC प्रारंभिक पहचान प्रोटोकॉल"
+                                        Language.ENGLISH -> "Official RBSK / DEIC Early Identification"
+                                    },
+                                    fontSize = 10.sp,
+                                    color = Color(0xFF2980B9)
+                                )
+                            }
+                        }
+
+                        OutlinedButton(
+                            onClick = { isSpeechGuidelinesExpanded = !isSpeechGuidelinesExpanded },
+                            shape = RoundedCornerShape(8.dp),
+                            contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 8.dp, vertical = 4.dp)
+                        ) {
+                            Text(
+                                text = if (isSpeechGuidelinesExpanded) {
+                                    when (state.currentLanguage) {
+                                        Language.TELUGU -> "మూసివేయి"
+                                        Language.HINDI -> "बंद करें"
+                                        Language.ENGLISH -> "Hide"
+                                    }
+                                } else {
+                                    when (state.currentLanguage) {
+                                        Language.TELUGU -> "చూడండి"
+                                        Language.HINDI -> "देखें"
+                                        Language.ENGLISH -> "Review"
+                                    }
+                                },
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    // Summary Banner: When to Refer
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(Color(0xFFEBF5FB))
+                            .padding(10.dp)
+                    ) {
+                        Column {
+                            Text(
+                                text = when (state.currentLanguage) {
+                                    Language.TELUGU -> "ఎప్పుడు స్పీచ్ థెరపీ అవసరం? (${child.ageYears} ఏళ్ళ వయస్సు):"
+                                    Language.HINDI -> "कब स्पीच थेरेपी की आवश्यकता होती है? (${child.ageYears} वर्ष):"
+                                    Language.ENGLISH -> "When is Speech Therapy Required? (${child.ageYears} Years):"
+                                },
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFF1B4F72)
+                            )
+                            Spacer(modifier = Modifier.height(3.dp))
+                            Text(
+                                text = speechGuideline.whenToReferSummary,
+                                fontSize = 11.5.sp,
+                                lineHeight = 16.sp,
+                                color = Color(0xFF2C3E50)
+                            )
+                        }
+                    }
+
+                    if (isSpeechGuidelinesExpanded) {
+                        Spacer(modifier = Modifier.height(10.dp))
+
+                        // Red Flag Indicators
+                        Text(
+                            text = when (state.currentLanguage) {
+                                Language.TELUGU -> "⚠️ ప్రధాన హెచ్చరిక సంకేతాలు (Red Flags):"
+                                Language.HINDI -> "⚠️ प्रमुख चेतावनी संकेत (Red Flags):"
+                                Language.ENGLISH -> "⚠️ Key Warning Red Flags (When to Escalate):"
+                            },
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFFC0392B)
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        speechGuideline.keyIndicators.forEach { indicator ->
+                            Row(
+                                modifier = Modifier.padding(vertical = 2.dp),
+                                verticalAlignment = Alignment.Top
+                            ) {
+                                Text("• ", fontSize = 12.sp, color = Color(0xFFC0392B), fontWeight = FontWeight.Bold)
+                                Text(indicator, fontSize = 11.sp, color = Color(0xFF34495E), lineHeight = 15.sp)
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        // Anganwadi Action
+                        Card(
+                            colors = CardDefaults.cardColors(containerColor = Color(0xFFFEF9E7)),
+                            shape = RoundedCornerShape(8.dp),
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Column(modifier = Modifier.padding(8.dp)) {
+                                Text(
+                                    text = when (state.currentLanguage) {
+                                        Language.TELUGU -> "🏥 అంగన్‌వాడీ కార్యకర్త చేయవలసిన చర్య:"
+                                        Language.HINDI -> "🏥 आंगनवाड़ी कार्यकर्ता के लिए आवश्यक कदम:"
+                                        Language.ENGLISH -> "🏥 Anganwadi Worker Action (RBSK / DEIC):"
+                                    },
+                                    fontSize = 10.5.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xFF996515)
+                                )
+                                Spacer(modifier = Modifier.height(2.dp))
+                                Text(
+                                    text = speechGuideline.anganwadiAction,
+                                    fontSize = 11.sp,
+                                    lineHeight = 15.sp,
+                                    color = Color(0xFF7D6608)
+                                )
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(6.dp))
+
+                        // Parent Home Guidance
+                        Card(
+                            colors = CardDefaults.cardColors(containerColor = Color(0xFFF4F6F6)),
+                            shape = RoundedCornerShape(8.dp),
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Column(modifier = Modifier.padding(8.dp)) {
+                                Text(
+                                    text = when (state.currentLanguage) {
+                                        Language.TELUGU -> "🏡 తల్లిదండ్రులకు ఇంటివద్ద సలహా:"
+                                        Language.HINDI -> "🏡 माता-पिता के लिए घरेलू मार्गदर्शन:"
+                                        Language.ENGLISH -> "🏡 Home Responsive Interaction for Parents:"
+                                    },
+                                    fontSize = 10.5.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xFF2C3E50)
+                                )
+                                Spacer(modifier = Modifier.height(2.dp))
+                                Text(
+                                    text = speechGuideline.parentGuidance,
+                                    fontSize = 11.sp,
+                                    lineHeight = 15.sp,
+                                    color = Color(0xFF34495E)
+                                )
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        // Toggle Milestone Table
+                        OutlinedButton(
+                            onClick = { showAllSpeechMilestones = !showAllSpeechMilestones },
+                            modifier = Modifier.fillMaxWidth(),
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Text(
+                                text = if (showAllSpeechMilestones) {
+                                    when (state.currentLanguage) {
+                                        Language.TELUGU -> "వయస్సుల మైలురాళ్ళ పట్టికను కుదించు"
+                                        Language.HINDI -> "आयु-वार मील के पत्थर छिपाएं"
+                                        Language.ENGLISH -> "Hide Age-Wise Milestones Matrix"
+                                    }
+                                } else {
+                                    when (state.currentLanguage) {
+                                        Language.TELUGU -> "1-6 ఏళ్ళ సంపూర్ణ స్పీచ్ మైలురాళ్ళు & హెచ్చరికలు"
+                                        Language.HINDI -> "1-6 वर्ष के संपूर्ण स्पीच मील के पत्थर व संकेत"
+                                        Language.ENGLISH -> "View Full 1-6y Speech Milestones & Red Flags"
+                                    }
+                                },
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        }
+
+                        if (showAllSpeechMilestones) {
+                            Spacer(modifier = Modifier.height(8.dp))
+                            SpeechTherapyGuidelines.ageMilestones.forEach { milestone ->
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(vertical = 4.dp)
+                                        .clip(RoundedCornerShape(6.dp))
+                                        .background(Color(0xFFF9F9F9))
+                                        .padding(8.dp)
+                                ) {
+                                    Text(
+                                        text = "🎯 ${milestone.ageMonthsRange}",
+                                        fontSize = 11.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        color = Color(0xFF1B4F72)
+                                    )
+                                    Text(
+                                        text = "Expected: ${milestone.expectedMilestone}",
+                                        fontSize = 10.sp,
+                                        color = Color(0xFF27AE60)
+                                    )
+                                    Text(
+                                        text = "Red Flag: ${milestone.redFlagIndicator}",
+                                        fontSize = 10.sp,
+                                        color = Color(0xFFC0392B),
+                                        fontWeight = FontWeight.Medium
+                                    )
+                                }
                             }
                         }
                     }
